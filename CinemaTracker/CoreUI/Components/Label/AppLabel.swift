@@ -23,15 +23,15 @@ class AppLabel: UILabel {
         case .title:
             self.font = .systemFont(ofSize: 20,weight: .bold)
         case .subtitle:
-            self.font = .systemFont(ofSize: 20,weight: .semibold)
-        case .normal1:
             self.font = .systemFont(ofSize: 18,weight: .semibold)
+        case .normal1:
+            self.font = .systemFont(ofSize: 16,weight: .semibold)
         case .normal2:
-            self.font = .systemFont(ofSize: 18,weight: .medium)
+            self.font = .systemFont(ofSize: 14,weight: .medium)
         case .small1:
-            self.font = .systemFont(ofSize: 16,weight: .medium)
+            self.font = .systemFont(ofSize: 12,weight: .medium)
         case .small2:
-            self.font = .systemFont(ofSize: 16,weight: .regular)
+            self.font = .systemFont(ofSize: 10,weight: .regular)
         }
         self.textColor = color
     }

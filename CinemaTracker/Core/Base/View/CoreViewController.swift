@@ -5,7 +5,6 @@
 //  Created by Yunus Çağlıyan on 16.06.2023.
 //
 
-import Foundation
 import UIKit
 
 
@@ -17,9 +16,13 @@ class CoreViewController<T:CoreViewModel> : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
-        initTheme()
         bindObservable()
         viewModel.onInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initTheme()
     }
     
     func setUpView() {
@@ -33,4 +36,5 @@ class CoreViewController<T:CoreViewModel> : UIViewController {
     func bindObservable() {
         
     }
+    
 }
