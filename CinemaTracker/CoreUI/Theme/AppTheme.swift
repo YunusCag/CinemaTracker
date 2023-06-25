@@ -27,6 +27,8 @@ final class AppTheme : Theme {
     private let lightColor = AppLightColor()
     private let darkColor = AppDarkColor()
     
+    var currentTheme = ThemeType.Light
+    
     private init() {}
     
     var colors: ThemeColor = AppLightColor()
@@ -35,12 +37,12 @@ final class AppTheme : Theme {
         switch(type) {
         case .Light:
             self.colors = lightColor
+            self.currentTheme = .Light
         case .Dark:
             self.colors = darkColor
+            self.currentTheme = .Dark
         }
     }
-    
-    
 }
 
 

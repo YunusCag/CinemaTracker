@@ -7,11 +7,18 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: CoreViewController <HomeViewModel> {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = AppTheme.shared.colors.secondary
+    override func setUpView() {
+        view.backgroundColor = AppTheme.shared.colors.secondaryGray
+    }
+    
+    override func initTheme() {
+        
+    }
+    
+    override func bindObservable() {
+        
     }
     
 }
