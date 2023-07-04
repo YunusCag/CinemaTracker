@@ -124,4 +124,4 @@ xcuserdata
 *.xcodeproj
 
 
-# End of https://www.toptal.com/developers/gitignore/api/swift,swiftpackagemanager,macos
+/Volumes/YUNUS/Projects/IOSProjects/CinemaTracker/CinemaTracker/Core/Data/Service/AppPrivateConstant.swift

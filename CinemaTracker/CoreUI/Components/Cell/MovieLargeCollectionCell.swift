@@ -72,7 +72,7 @@ class MovieLargeCollectionCell: UICollectionViewCell {
         labelName.text = movie.title ?? Constant.StringParameter.EMPTY_STRING
         if let posterUrl = movie.posterPath {
             print(posterUrl)
-            if let url = URL(string: "\(Constant.NetworkUrl.baseImageUrl)\(posterUrl)") {
+            if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(posterUrl)") {
                 print(url.description)
                 largeImage.af.setImage(withURL: url, completion:  { data in
                     self.largeImage.isHidden = false

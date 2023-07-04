@@ -25,7 +25,7 @@ protocol IMovieService {
 final class MovieService : IMovieService {
     static let shared: MovieService = MovieService()
     
-    private let url = "https://api.themoviedb.org/3/"
+    private let url = ApiConstant.BASE_URL.rawValue
     
     private init() {
         
@@ -40,7 +40,7 @@ final class MovieService : IMovieService {
         completion: @escaping (Result<MovieListResponse, Error>) -> Void
     ) {
         var paramters = [
-            Constant.NetworkParamKey.apiKey : "4ceba0985010b11eb871640206d56895",
+            Constant.NetworkParamKey.apiKey : ApiConstant.API_KEY.rawValue,
             Constant.NetworkParamKey.page : page,
             Constant.NetworkParamKey.language : lang,
             Constant.NetworkParamKey.region : region,

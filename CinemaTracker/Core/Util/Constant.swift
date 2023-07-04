@@ -14,10 +14,6 @@ struct Constant{
         static let EMPTY_STRING = ""
     }
     
-    struct NetworkUrl {
-        static let baseImageUrl = "https://image.tmdb.org/t/p/w342"
-    }
-    
     struct NetworkParamKey {
         static let page: String = "page"
         static let language = "language"
