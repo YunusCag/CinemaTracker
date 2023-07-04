@@ -11,35 +11,40 @@ import SnapKit
 final class HomeViewController: CoreViewController <HomeViewModel> {
 
     
-    private lazy var titleLabel: AppLabel = AppLabel()
+    private lazy var screenWidth: CGFloat = view.frame.width
+    private lazy var screenHeight: CGFloat = view.frame.height
+    
+    
     private lazy var scrollView: UIScrollView = UIScrollView()
+    private lazy var horizontalPager: MovieHorizontalPageList = {
+        let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250))
+        horizonal.setTitle(title: "UpComing Movie")
+        return horizonal
+    }()
+    
     
     override func setUpView() {
-        view.addSubview(titleLabel)
         view.addSubview(scrollView)
         
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.left.equalToSuperview().offset(16)
-        }
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.top).offset(12)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
-        titleLabel.text = "Home"
-        titleLabel.textAlignment = .center
+        scrollView.addSubview(horizontalPager)
     }
     
     override func initTheme() {
         view.backgroundColor = AppTheme.shared.colors.background
-        titleLabel.initStyle(typograph: .title)
+        horizontalPager.initStyle()
     }
     
     override func bindObservable() {
-        
+        viewModel.movieList.bind { movieList in
+            self.horizontalPager.addAllMovie(list: movieList)
+        }
     }
     
 }
