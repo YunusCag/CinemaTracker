@@ -1,38 +1,35 @@
 //
-//  MovieHorizontalPageList.swift
+//  MovieSmallHorizontalList.swift
 //  CinemaTracker
 //
-//  Created by Yunus Çağlıyan on 2.07.2023.
+//  Created by Yunus Çağlıyan on 5.07.2023.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    
+final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     private lazy var screenWidth: CGFloat = frame.width
     private lazy var screenHeight: CGFloat = frame.height
     
-    private lazy var labelTitle: AppLabel = AppLabel()
-    
     private var movieList: [MovieModel] = []
-    
+    private lazy var labelTitle: AppLabel = AppLabel()
     private lazy var collectionView: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = .zero
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 200), collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.register(MovieLargeCollectionCell.self, forCellWithReuseIdentifier: MovieLargeCollectionCell.identifier)
+        collectionView.register(MovieSmallCollectionCell.self, forCellWithReuseIdentifier: MovieSmallCollectionCell.identifier)
         return collectionView
     }()
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -59,9 +56,8 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
             make.top.equalTo(labelTitle.snp.bottom).offset(8)
             make.left.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(250)
+            make.height.equalTo(200)
         }
-        
     }
     
     func setTitle(title: String) {
@@ -81,19 +77,22 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieLargeCollectionCell.identifier, for: indexPath) as! MovieLargeCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieSmallCollectionCell.identifier, for: indexPath) as! MovieSmallCollectionCell
         let movieModel = self.movieList[indexPath.row]
         cell.saveMovie(movie: movieModel)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: frame.width - 24, height: collectionView.frame.height)
+        return CGSize(width: 100, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
+    
+    
     
 }

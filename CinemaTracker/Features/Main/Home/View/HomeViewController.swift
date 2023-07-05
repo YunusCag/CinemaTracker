@@ -15,13 +15,36 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     private lazy var screenHeight: CGFloat = view.frame.height
     
     
-    private lazy var scrollView: UIScrollView = UIScrollView()
-    private lazy var horizontalPager: MovieHorizontalPageList = {
+    private lazy var scrollView: UIScrollView = {
+       let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false
+        return scroll
+    }()
+    private lazy var largeHorizontalPager: MovieHorizontalPageList = {
         let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250))
-        horizonal.setTitle(title: "UpComing Movie")
+        horizonal.setTitle(title: "UpComing")
         return horizonal
     }()
     
+    private lazy var trendingHorizontalList: MovieSmallHorizontalList = {
+        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: largeHorizontalPager.frame.maxY + 40, width: screenWidth, height: 200))
+        horizontal.setTitle(title: "Trending")
+        return horizontal
+    }()
+    
+    private lazy var popularHorizontalList: MovieSmallHorizontalList = {
+        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: trendingHorizontalList.frame.maxY + 20, width: screenWidth, height: 200))
+        horizontal.setTitle(title: "Popular")
+        return horizontal
+    }()
+    
+    private lazy var topRatedHorizontalList: MovieSmallHorizontalList = {
+        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: popularHorizontalList.frame.maxY + 20, width: screenWidth, height: 200))
+        horizontal.setTitle(title: "Top Rated")
+        return horizontal
+    }()
     
     override func setUpView() {
         view.addSubview(scrollView)
@@ -33,17 +56,34 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
             make.bottom.equalToSuperview()
         }
         
-        scrollView.addSubview(horizontalPager)
+        scrollView.addSubview(largeHorizontalPager)
+        scrollView.addSubview(trendingHorizontalList)
+        scrollView.addSubview(popularHorizontalList)
+        scrollView.addSubview(topRatedHorizontalList)
+        
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
     }
     
     override func initTheme() {
         view.backgroundColor = AppTheme.shared.colors.background
-        horizontalPager.initStyle()
+        largeHorizontalPager.initStyle()
+        trendingHorizontalList.initStyle()
+        popularHorizontalList.initStyle()
+        topRatedHorizontalList.initStyle()
     }
     
     override func bindObservable() {
-        viewModel.movieList.bind { movieList in
-            self.horizontalPager.addAllMovie(list: movieList)
+        viewModel.upComingMovieList.bind { movieList in
+            self.largeHorizontalPager.addAllMovie(list: movieList)
+        }
+        viewModel.trendingMovieList.bind { movieList in
+            self.trendingHorizontalList.addAllMovie(list: movieList)
+        }
+        viewModel.popularMovieList.bind { movieList in
+            self.popularHorizontalList.addAllMovie(list: movieList)
+        }
+        viewModel.topRatedMovieList.bind { movieList in
+            self.topRatedHorizontalList.addAllMovie(list: movieList)
         }
     }
     

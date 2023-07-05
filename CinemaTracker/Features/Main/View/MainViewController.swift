@@ -16,12 +16,12 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     private lazy var viewModel: MainViewModel = MainViewModel()
     /*
-    private lazy var tabController: UITabBarController = {
-       let tabBar = UITabBarController()
-        tabBar.setViewControllers([homeVC, favouriteVC, settingsVC], animated: true)
-        return tabBar
-    }()
-    */
+     private lazy var tabController: UITabBarController = {
+     let tabBar = UITabBarController()
+     tabBar.setViewControllers([homeVC, favouriteVC, settingsVC], animated: true)
+     return tabBar
+     }()
+     */
     
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         setUpView()
         initTheme()
     }
-
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
     }
@@ -56,8 +56,9 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     func initTheme() {
         self.tabBar.tintColor = AppTheme.shared.colors.secondary
         self.tabBar.unselectedItemTintColor = AppTheme.shared.colors.textPrimary
-        self.tabBar.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.5)
+        self.tabBar.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.2)
         self.tabBar.clipsToBounds = false
+        self.tabBar.isTranslucent = true
     }
     
 }
