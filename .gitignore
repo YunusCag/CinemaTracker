@@ -123,5 +123,5 @@ Packages
 xcuserdata
 *.xcodeproj
 
+Core/Util/AppConstant.swift
 
-/Volumes/YUNUS/Projects/IOSProjects/CinemaTracker/CinemaTracker/Core/Data/Service/ApiConstant.swift
