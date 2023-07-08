@@ -1,0 +1,20 @@
+/* COMMON */
+
+"common_turkish" = "Türkçe";
+"common_english" = "İngilizce";
+
+"common_turkey" = "Türkiye";
+"common_usa" = "Amerika";
+
+/* HOME */
+"home_tab_item_text" = "Anasayfa";
+"home_up_coming_title" = "Yakında Sinemalarda";
+"home_trending_title" = "Trend";
+"home_popular_title" = "Popüler";
+"home_top_rated_title" = "En Çok Oy Alanlar";
+
+/* Favourite */
+"favourite_tab_item_text" = "Favoriler";
+
+/* Settings */
+"settings_tab_item_text" = "Ayarlar";

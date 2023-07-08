@@ -24,25 +24,25 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     }()
     private lazy var largeHorizontalPager: MovieHorizontalPageList = {
         let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250))
-        horizonal.setTitle(title: "UpComing")
+        horizonal.setTitle(title: LocalizableKeys.Home.upComingTitle.getLocalized())
         return horizonal
     }()
     
     private lazy var trendingHorizontalList: MovieSmallHorizontalList = {
         let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: largeHorizontalPager.frame.maxY + 40, width: screenWidth, height: 200))
-        horizontal.setTitle(title: "Trending")
+        horizontal.setTitle(title: LocalizableKeys.Home.trendingTitle.getLocalized())
         return horizontal
     }()
     
     private lazy var popularHorizontalList: MovieSmallHorizontalList = {
         let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: trendingHorizontalList.frame.maxY + 20, width: screenWidth, height: 200))
-        horizontal.setTitle(title: "Popular")
+        horizontal.setTitle(title: LocalizableKeys.Home.popularTitle.getLocalized())
         return horizontal
     }()
     
     private lazy var topRatedHorizontalList: MovieSmallHorizontalList = {
         let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: popularHorizontalList.frame.maxY + 20, width: screenWidth, height: 200))
-        horizontal.setTitle(title: "Top Rated")
+        horizontal.setTitle(title: LocalizableKeys.Home.topRatedTitle.getLocalized())
         return horizontal
     }()
     

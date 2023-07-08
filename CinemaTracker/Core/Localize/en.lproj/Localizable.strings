@@ -1,0 +1,20 @@
+/* COMMON */
+
+"common_turkish" = "Turkish";
+"common_english" = "English";
+
+"common_turkey" = "Turkey";
+"common_usa" = "USA";
+
+/* HOME */
+"home_tab_item_text" = "Home";
+"home_up_coming_title" = "Box Office";
+"home_trending_title" = "Trending";
+"home_popular_title" = "Popular";
+"home_top_rated_title" = "Top Rated";
+
+/* Favourite */
+"favourite_tab_item_text" = "Favourites";
+
+/* Settings */
+"settings_tab_item_text" = "Settings";

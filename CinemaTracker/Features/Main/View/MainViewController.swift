@@ -43,9 +43,21 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     func setUpView() {
         let controllers = [homeVC, favouriteVC, settingsVC]
-        let homeTabItem = UITabBarItem(title: "Home",image: UIImage(systemName: "house.fill"),tag: 0)
-        let favouriteTabItem = UITabBarItem(title: "Favourite", image: UIImage(systemName: "heart.fill"),tag: 1)
-        let settingsTabItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape.fill"), tag: 2)
+        let homeTabItem = UITabBarItem(
+            title: LocalizableKeys.Home.tabItem.getLocalized(),
+            image: UIImage(systemName: "house.fill"),
+            tag: 0
+        )
+        let favouriteTabItem = UITabBarItem(
+            title: LocalizableKeys.Favourites.tabItem.getLocalized(),
+            image: UIImage(systemName: "heart.fill"),
+            tag: 1
+        )
+        let settingsTabItem = UITabBarItem(
+            title: LocalizableKeys.Settings.tabItem.getLocalized(),
+            image: UIImage(systemName: "gearshape.fill"),
+            tag: 2
+        )
         homeVC.tabBarItem = homeTabItem
         favouriteVC.tabBarItem = favouriteTabItem
         settingsVC.tabBarItem = settingsTabItem
