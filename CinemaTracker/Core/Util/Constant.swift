@@ -13,6 +13,9 @@ struct Constant{
     struct StringParameter {
         static let EMPTY_STRING = ""
     }
+    struct DurationUtil {
+        static let HOME_AUTO_SCROLL_DURATION = 5.0
+    }
     
     struct NetworkParamKey {
         static let page: String = "page"
@@ -22,4 +25,5 @@ struct Constant{
         static let movieId = "movie_id"
         static let apiKey = "api_key"
     }
+    
 }

@@ -18,6 +18,8 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     private lazy var labelTitle: AppLabel = AppLabel()
     
     private var movieList: [MovieModel] = []
+    private var currentIndex = 0
+    private var timer: Timer? = nil
     
     private lazy var collectionView: UICollectionView = {
        let layout = UICollectionViewFlowLayout()
@@ -31,6 +33,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(MovieLargeCollectionCell.self, forCellWithReuseIdentifier: MovieLargeCollectionCell.identifier)
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
@@ -61,6 +64,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
             make.width.equalToSuperview()
             make.height.equalTo(250)
         }
+        startTimer()
         
     }
     
@@ -88,7 +92,6 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: frame.width - 24, height: collectionView.frame.height)
     }
     
@@ -96,4 +99,19 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
+    @objc func scrollNext() {
+        if currentIndex < movieList.count - 1 {
+            currentIndex += 1
+        } else {
+            currentIndex = 0
+        }
+        
+        let indexPath = IndexPath(item: currentIndex, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: Constant.DurationUtil.HOME_AUTO_SCROLL_DURATION, target: self, selector: #selector(scrollNext), userInfo: nil, repeats: true);
+    }
 }
