@@ -15,7 +15,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     private lazy var screenWidth: CGFloat = frame.width
     private lazy var screenHeight: CGFloat = frame.height
     
-    private lazy var labelTitle: AppLabel = AppLabel()
+    private lazy var titleView: TitleView = TitleView()
     
     private var movieList: [MovieModel] = []
     private var currentIndex = 0
@@ -49,17 +49,17 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     
     
     private func createView() {
-        addSubview(labelTitle)
+        addSubview(titleView)
         addSubview(collectionView)
         
-        labelTitle.snp.makeConstraints { make in
+        titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(16)
             make.width.equalTo(screenWidth)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(labelTitle.snp.bottom).offset(8)
+            make.top.equalTo(titleView.snp.bottom).offset(8)
             make.left.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalTo(250)
@@ -69,7 +69,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     }
     
     func setTitle(title: String) {
-        labelTitle.text = title
+        titleView.setTitle(value: title)
     }
     func addAllMovie(list: [MovieModel]) {
         self.movieList.append(contentsOf: list)
@@ -77,7 +77,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     }
     
     func initStyle() {
-        labelTitle.initStyle(typograph: .subtitle,color: AppTheme.shared.colors.textPrimary)
+        titleView.initStyle(typograph: .subtitle,color: AppTheme.shared.colors.textPrimary)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,7 +111,11 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
         
     }
     
-    func startTimer() {
+    private func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: Constant.DurationUtil.HOME_AUTO_SCROLL_DURATION, target: self, selector: #selector(scrollNext), userInfo: nil, repeats: true);
+    }
+    
+    func addTitleTapGesture(gesture:UITapGestureRecognizer) {
+        titleView.setTapEvent(gesture: gesture)
     }
 }

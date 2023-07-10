@@ -9,14 +9,14 @@ import UIKit
 import SnapKit
 
 final class HomeViewController: CoreViewController <HomeViewModel> {
-
+    
     
     private lazy var screenWidth: CGFloat = view.frame.width
     private lazy var screenHeight: CGFloat = view.frame.height
     
     
     private lazy var scrollView: UIScrollView = {
-       let scroll = UIScrollView()
+        let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.showsVerticalScrollIndicator = false
         scroll.showsHorizontalScrollIndicator = false
@@ -29,7 +29,7 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     }()
     
     private lazy var trendingHorizontalList: MovieSmallHorizontalList = {
-        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: largeHorizontalPager.frame.maxY + 40, width: screenWidth, height: 200))
+        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: largeHorizontalPager.frame.maxY + 50, width: screenWidth, height: 200))
         horizontal.setTitle(title: LocalizableKeys.Home.trendingTitle.getLocalized())
         return horizontal
     }()
@@ -62,6 +62,19 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         scrollView.addSubview(topRatedHorizontalList)
         
         scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
+        
+        let upComingGesture = UITapGestureRecognizer(target: self, action: #selector(navigateUpComingList))
+        largeHorizontalPager.addTitleTapGesture(gesture: upComingGesture)
+        
+        let trendingGesture = UITapGestureRecognizer(target: self, action: #selector(navigateTrendList))
+        trendingHorizontalList.addTitleTapGesture(gesture: trendingGesture)
+        
+        let popularGesture = UITapGestureRecognizer(target: self, action: #selector(navigatePopularList))
+        popularHorizontalList.addTitleTapGesture(gesture: popularGesture)
+        
+        let topRatedGesture = UITapGestureRecognizer(target: self, action: #selector(navigateTopRatedList))
+        topRatedHorizontalList.addTitleTapGesture(gesture: topRatedGesture)
+        
     }
     
     override func initTheme() {
@@ -74,19 +87,48 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     
     override func bindObservable() {
         viewModel.upComingMovieList.bind { movieList in
-            self.largeHorizontalPager.addAllMovie(list: movieList)
+            DispatchQueue.main.async {
+                self.largeHorizontalPager.addAllMovie(list: movieList)
+            }
         }
         viewModel.trendingMovieList.bind { movieList in
-            self.trendingHorizontalList.addAllMovie(list: movieList)
+            DispatchQueue.main.async {
+                self.trendingHorizontalList.addAllMovie(list: movieList)
+            }
         }
         viewModel.popularMovieList.bind { movieList in
-            self.popularHorizontalList.addAllMovie(list: movieList)
+            DispatchQueue.main.async {
+                self.popularHorizontalList.addAllMovie(list: movieList)
+            }
         }
         viewModel.topRatedMovieList.bind { movieList in
-            self.topRatedHorizontalList.addAllMovie(list: movieList)
+            DispatchQueue.main.async {
+                self.topRatedHorizontalList.addAllMovie(list: movieList)
+            }
         }
     }
     
+    @objc func navigateUpComingList() {
+        navigateList(title: LocalizableKeys.Home.upComingTitle.getLocalized())
+    }
+    
+    @objc func navigateTrendList() {
+        navigateList(title: LocalizableKeys.Home.trendingTitle.getLocalized())
+    }
+    
+    @objc func navigatePopularList() {
+        navigateList(title: LocalizableKeys.Home.popularTitle.getLocalized())
+    }
+    
+    @objc func navigateTopRatedList() {
+        navigateList(title: LocalizableKeys.Home.topRatedTitle.getLocalized())
+    }
+    
+    private func navigateList(title:String) {
+        let movieListVC = MovieListViewControler()
+        movieListVC.listTitle = title
+        navigationController?.pushViewController(movieListVC, animated: true)
+    }
 }
 
 

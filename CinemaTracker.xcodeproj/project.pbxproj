@@ -26,6 +26,9 @@
 		0B6A71AA2A39E09F00BB0484 /* AppLightColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A71A92A39E09F00BB0484 /* AppLightColor.swift */; };
 		0B6A71AC2A39E9C500BB0484 /* AppDarkColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A71AB2A39E9C500BB0484 /* AppDarkColor.swift */; };
 		0B6A71AF2A39F0F700BB0484 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6A71AE2A39F0F700BB0484 /* ColorExtension.swift */; };
+		0B8FB3E82A5BE5F100B593A2 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3E72A5BE5F100B593A2 /* MovieListViewModel.swift */; };
+		0B8FB3EA2A5BE62D00B593A2 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3E92A5BE62D00B593A2 /* MovieListViewController.swift */; };
+		0B8FB3ED2A5BEB6C00B593A2 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3EC2A5BEB6C00B593A2 /* TitleView.swift */; };
 		0BD597E72A55633400357D8A /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597E62A55633400357D8A /* AppConstant.swift */; };
 		0BD597E92A55753500357D8A /* MovieSmallHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597E82A55753500357D8A /* MovieSmallHorizontalList.swift */; };
 		0BD597EB2A55770E00357D8A /* MovieSmallCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597EA2A55770E00357D8A /* MovieSmallCollectionCell.swift */; };
@@ -89,6 +92,9 @@
 		0B6A71A92A39E09F00BB0484 /* AppLightColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLightColor.swift; sourceTree = "<group>"; };
 		0B6A71AB2A39E9C500BB0484 /* AppDarkColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDarkColor.swift; sourceTree = "<group>"; };
 		0B6A71AE2A39F0F700BB0484 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		0B8FB3E72A5BE5F100B593A2 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		0B8FB3E92A5BE62D00B593A2 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
+		0B8FB3EC2A5BEB6C00B593A2 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		0BD597E62A55633400357D8A /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		0BD597E82A55753500357D8A /* MovieSmallHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSmallHorizontalList.swift; sourceTree = "<group>"; };
 		0BD597EA2A55770E00357D8A /* MovieSmallCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSmallCollectionCell.swift; sourceTree = "<group>"; };
@@ -162,9 +168,10 @@
 			children = (
 				0B47730C2A4837C60022F475 /* ViewModel */,
 				0B47730B2A4837B20022F475 /* View */,
-				0B47730A2A48375D0022F475 /* Favourite */,
-				0B4773092A4837560022F475 /* Settings */,
 				0BFBF1292A371A48008BE188 /* Home */,
+				0B4773092A4837560022F475 /* Settings */,
+				0B47730A2A48375D0022F475 /* Favourite */,
+				0B8FB3E42A5BE58900B593A2 /* MovieList */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -251,6 +258,39 @@
 				0B6A71AE2A39F0F700BB0484 /* ColorExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0B8FB3E42A5BE58900B593A2 /* MovieList */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3E52A5BE5D700B593A2 /* ViewModel */,
+				0B8FB3E62A5BE5DF00B593A2 /* View */,
+			);
+			path = MovieList;
+			sourceTree = "<group>";
+		};
+		0B8FB3E52A5BE5D700B593A2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3E72A5BE5F100B593A2 /* MovieListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0B8FB3E62A5BE5DF00B593A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3E92A5BE62D00B593A2 /* MovieListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0B8FB3EB2A5BEB3600B593A2 /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3EC2A5BEB6C00B593A2 /* TitleView.swift */,
+			);
+			path = Title;
 			sourceTree = "<group>";
 		};
 		0BD909CA2A518A0500760F07 /* List */ = {
@@ -431,6 +471,7 @@
 		0BFBF1282A371A1A008BE188 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0B8FB3EB2A5BEB3600B593A2 /* Title */,
 				0BFA06602A52C74D0082109F /* Cell */,
 				0BD909CA2A518A0500760F07 /* List */,
 				0B4772F82A48253B0022F475 /* Label */,
@@ -649,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B8FB3ED2A5BEB6C00B593A2 /* TitleView.swift in Sources */,
 				0BFA06622A52C7740082109F /* MovieLargeCollectionCell.swift in Sources */,
 				0B4772FC2A4826670022F475 /* Typography.swift in Sources */,
 				0B6A71A82A39D88B00BB0484 /* ThemeColor.swift in Sources */,
@@ -664,6 +706,7 @@
 				0B6A71AA2A39E09F00BB0484 /* AppLightColor.swift in Sources */,
 				0B4773152A4839890022F475 /* SettingsViewModel.swift in Sources */,
 				0BE627802A3CA74200475D95 /* HomeViewModel.swift in Sources */,
+				0B8FB3EA2A5BE62D00B593A2 /* MovieListViewController.swift in Sources */,
 				0B47731E2A483ABB0022F475 /* FavouriteViewController.swift in Sources */,
 				0B6A71AF2A39F0F700BB0484 /* ColorExtension.swift in Sources */,
 				0BD909D62A51A3BF00760F07 /* Constant.swift in Sources */,
@@ -673,6 +716,7 @@
 				0B6A71A62A39D7A400BB0484 /* AppTheme.swift in Sources */,
 				0B47730E2A4837EF0022F475 /* MainViewController.swift in Sources */,
 				0BE627862A3CAB8000475D95 /* CoreViewModel.swift in Sources */,
+				0B8FB3E82A5BE5F100B593A2 /* MovieListViewModel.swift in Sources */,
 				0BFBF0F62A3719A5008BE188 /* SceneDelegate.swift in Sources */,
 				0BFBF12F2A371AC2008BE188 /* HomeViewController.swift in Sources */,
 				0B6A71AC2A39E9C500BB0484 /* AppDarkColor.swift in Sources */,
