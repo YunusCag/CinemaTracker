@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 
-protocol IMovieService {
+protocol MovieServiceProtocol {
     
     func fetchMovieList(
         page: Int,
@@ -22,7 +22,7 @@ protocol IMovieService {
 }
 
 
-final class MovieService : IMovieService {
+final class MovieService : MovieServiceProtocol {
     static let shared: MovieService = MovieService()
     
     private let url = ApiConstant.BASE_URL.rawValue

@@ -9,7 +9,7 @@ import Foundation
 
 
 final class HomeViewModel : CoreViewModel {
-    private let service: IMovieService = MovieService.shared
+    private let service: MovieServiceProtocol = MovieService.shared
     
     let upComingMovieList = ObservableList<MovieModel> ()
     let upComingErrorMessage = ObservableObject<String?> (nil)

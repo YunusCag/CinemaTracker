@@ -29,6 +29,10 @@
 		0B8FB3E82A5BE5F100B593A2 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3E72A5BE5F100B593A2 /* MovieListViewModel.swift */; };
 		0B8FB3EA2A5BE62D00B593A2 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3E92A5BE62D00B593A2 /* MovieListViewController.swift */; };
 		0B8FB3ED2A5BEB6C00B593A2 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3EC2A5BEB6C00B593A2 /* TitleView.swift */; };
+		0B8FB3F02A5C348C00B593A2 /* MovieListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3EF2A5C348C00B593A2 /* MovieListType.swift */; };
+		0B8FB3F22A5C3C0E00B593A2 /* MovieImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3F12A5C3C0E00B593A2 /* MovieImageCell.swift */; };
+		0B8FB3F52A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */; };
+		0B8FB3F82A5C4E4200B593A2 /* PaginationLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FB3F72A5C4E4200B593A2 /* PaginationLoadingCell.swift */; };
 		0BD597E72A55633400357D8A /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597E62A55633400357D8A /* AppConstant.swift */; };
 		0BD597E92A55753500357D8A /* MovieSmallHorizontalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597E82A55753500357D8A /* MovieSmallHorizontalList.swift */; };
 		0BD597EB2A55770E00357D8A /* MovieSmallCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD597EA2A55770E00357D8A /* MovieSmallCollectionCell.swift */; };
@@ -95,6 +99,9 @@
 		0B8FB3E72A5BE5F100B593A2 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		0B8FB3E92A5BE62D00B593A2 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		0B8FB3EC2A5BEB6C00B593A2 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		0B8FB3EF2A5C348C00B593A2 /* MovieListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListType.swift; sourceTree = "<group>"; };
+		0B8FB3F12A5C3C0E00B593A2 /* MovieImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageCell.swift; sourceTree = "<group>"; };
+		0B8FB3F72A5C4E4200B593A2 /* PaginationLoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationLoadingCell.swift; sourceTree = "<group>"; };
 		0BD597E62A55633400357D8A /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		0BD597E82A55753500357D8A /* MovieSmallHorizontalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSmallHorizontalList.swift; sourceTree = "<group>"; };
 		0BD597EA2A55770E00357D8A /* MovieSmallCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSmallCollectionCell.swift; sourceTree = "<group>"; };
@@ -132,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B4772FF2A4835C60022F475 /* SnapKit in Frameworks */,
+				0B8FB3F52A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout in Frameworks */,
 				0BD909E12A51C30500760F07 /* AlamofireNetworkActivityLogger in Frameworks */,
 				0B4773022A4835D80022F475 /* Alamofire in Frameworks */,
 				0B4773052A4835E80022F475 /* AlamofireImage in Frameworks */,
@@ -293,6 +301,22 @@
 			path = Title;
 			sourceTree = "<group>";
 		};
+		0B8FB3EE2A5C345F00B593A2 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3EF2A5C348C00B593A2 /* MovieListType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		0B8FB3F62A5C4E2500B593A2 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				0B8FB3F72A5C4E4200B593A2 /* PaginationLoadingCell.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
 		0BD909CA2A518A0500760F07 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +384,7 @@
 			children = (
 				0BFA06612A52C7740082109F /* MovieLargeCollectionCell.swift */,
 				0BD597EA2A55770E00357D8A /* MovieSmallCollectionCell.swift */,
+				0B8FB3F12A5C3C0E00B593A2 /* MovieImageCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -471,6 +496,7 @@
 		0BFBF1282A371A1A008BE188 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0B8FB3F62A5C4E2500B593A2 /* Loading */,
 				0B8FB3EB2A5BEB3600B593A2 /* Title */,
 				0BFA06602A52C74D0082109F /* Cell */,
 				0BD909CA2A518A0500760F07 /* List */,
@@ -521,6 +547,7 @@
 		0BFBF1302A371C85008BE188 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0B8FB3EE2A5C345F00B593A2 /* Enums */,
 				0BD909CD2A519B2000760F07 /* Service */,
 				0BFBF1322A371CA4008BE188 /* Model */,
 				0BD909DA2A51AFC500760F07 /* Response */,
@@ -566,6 +593,7 @@
 				0B4773012A4835D80022F475 /* Alamofire */,
 				0B4773042A4835E80022F475 /* AlamofireImage */,
 				0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */,
+				0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */,
 			);
 			productName = CinemaTracker;
 			productReference = 0BFBF0F02A3719A5008BE188 /* CinemaTracker.app */;
@@ -645,6 +673,7 @@
 				0B4773002A4835D80022F475 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0B4773032A4835E80022F475 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
+				0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
 			);
 			productRefGroup = 0BFBF0F12A3719A5008BE188 /* Products */;
 			projectDirPath = "";
@@ -696,6 +725,7 @@
 				0B6A71A82A39D88B00BB0484 /* ThemeColor.swift in Sources */,
 				0BFA06642A52D19A0082109F /* ObservableList.swift in Sources */,
 				0BD909D12A519BFD00760F07 /* NetworkError.swift in Sources */,
+				0B8FB3F82A5C4E4200B593A2 /* PaginationLoadingCell.swift in Sources */,
 				0BD909DC2A51AFF000760F07 /* MovieListResponse.swift in Sources */,
 				0BE627842A3CA88E00475D95 /* CoreViewController.swift in Sources */,
 				0BFBF0F42A3719A5008BE188 /* AppDelegate.swift in Sources */,
@@ -706,10 +736,12 @@
 				0B6A71AA2A39E09F00BB0484 /* AppLightColor.swift in Sources */,
 				0B4773152A4839890022F475 /* SettingsViewModel.swift in Sources */,
 				0BE627802A3CA74200475D95 /* HomeViewModel.swift in Sources */,
+				0B8FB3F02A5C348C00B593A2 /* MovieListType.swift in Sources */,
 				0B8FB3EA2A5BE62D00B593A2 /* MovieListViewController.swift in Sources */,
 				0B47731E2A483ABB0022F475 /* FavouriteViewController.swift in Sources */,
 				0B6A71AF2A39F0F700BB0484 /* ColorExtension.swift in Sources */,
 				0BD909D62A51A3BF00760F07 /* Constant.swift in Sources */,
+				0B8FB3F22A5C3C0E00B593A2 /* MovieImageCell.swift in Sources */,
 				0BD909CF2A519B8200760F07 /* MovieService.swift in Sources */,
 				0BD909CC2A518ACD00760F07 /* MovieHorizontalPageList.swift in Sources */,
 				0B4E72A22A59AF12008C780D /* LocalizableKeys.swift in Sources */,
@@ -1103,6 +1135,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.10;
+			};
+		};
 		0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger";
@@ -1128,6 +1168,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B4773032A4835E80022F475 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
 			productName = AlamofireImage;
+		};
+		0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
+			productName = CHTCollectionViewWaterfallLayout;
 		};
 		0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */ = {
 			isa = XCSwiftPackageProductDependency;

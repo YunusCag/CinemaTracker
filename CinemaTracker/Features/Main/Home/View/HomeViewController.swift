@@ -109,24 +109,25 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     }
     
     @objc func navigateUpComingList() {
-        navigateList(title: LocalizableKeys.Home.upComingTitle.getLocalized())
+        navigateList(title: LocalizableKeys.Home.upComingTitle.getLocalized(),listType: .UpComing)
     }
     
     @objc func navigateTrendList() {
-        navigateList(title: LocalizableKeys.Home.trendingTitle.getLocalized())
+        navigateList(title: LocalizableKeys.Home.trendingTitle.getLocalized(),listType: .Trending)
     }
     
     @objc func navigatePopularList() {
-        navigateList(title: LocalizableKeys.Home.popularTitle.getLocalized())
+        navigateList(title: LocalizableKeys.Home.popularTitle.getLocalized(),listType: .Popular)
     }
     
     @objc func navigateTopRatedList() {
-        navigateList(title: LocalizableKeys.Home.topRatedTitle.getLocalized())
+        navigateList(title: LocalizableKeys.Home.topRatedTitle.getLocalized(),listType: .TopRated)
     }
     
-    private func navigateList(title:String) {
+    private func navigateList(title:String, listType:MovieListType) {
         let movieListVC = MovieListViewControler()
         movieListVC.listTitle = title
+        movieListVC.listType = listType
         navigationController?.pushViewController(movieListVC, animated: true)
     }
 }
