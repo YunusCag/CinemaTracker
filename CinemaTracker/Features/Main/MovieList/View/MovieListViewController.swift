@@ -76,7 +76,6 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isLoading && self.movieList.count - 1 == indexPath.row {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PaginationCell.identifier, for: indexPath) as! PaginationCell
-            
             return cell
         }
         
@@ -87,7 +86,8 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 2, height: CGFloat.random(in: 200...300))
+        let movieModel = self.movieList[indexPath.row]
+        return CGSize(width: view.frame.width / 2, height: movieModel.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -24,6 +24,9 @@ struct MovieModel: Codable {
     var voteAverage: Double? = nil
     var voteCount: Int? = nil
     
+    //staggered height
+    let height:CGFloat = CGFloat.random(in: 200...300)
+    
     private enum CodingKeys : String, CodingKey {
         case adult = "adult"
         case backdropPath = "backdrop_path"
