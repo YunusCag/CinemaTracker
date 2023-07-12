@@ -18,8 +18,11 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
     private var movieList: [MovieModel] = []
     private var isLoading: Bool = true
     
+    private var genreList: [GenreModel] = []
+    private var selectedGenreIndex = 0
+    
     private lazy var collectionView: UICollectionView = {
-       let layout = CHTCollectionViewWaterfallLayout()
+        let layout = CHTCollectionViewWaterfallLayout()
         layout.columnCount = 2
         layout.itemRenderDirection = .leftToRight
         layout.sectionInset = .zero
@@ -32,10 +35,12 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
         collectionView.register(MovieImageCell.self, forCellWithReuseIdentifier: MovieImageCell.identifier)
         collectionView.register(PaginationCell.self, forCellWithReuseIdentifier: PaginationCell.identifier)
         return collectionView
     }()
+    
     
     override func setUpView() {
         self.title = listTitle ?? Constant.StringParameter.EMPTY_STRING
@@ -49,6 +54,9 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        self.navigationController?.navigationBar.tintColor = AppTheme.shared.colors.secondary
+        
     }
     
     override func initTheme() {
@@ -63,9 +71,54 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
             }
         }
         viewModel.isLoading.bind { isLoading in
-            self.isLoading = isLoading
-            self.collectionView.reloadData()
+            DispatchQueue.main.async {
+                self.isLoading = isLoading
+                self.collectionView.reloadData()
+            }
         }
+        viewModel.genreList.bind { genres in
+            DispatchQueue.main.async {
+                self.genreList = genres
+                self.createRightActionItem()
+            }
+        }
+    }
+    
+    private func createRightActionItem() {
+        let image = UIImage(systemName: "bookmark.fill")
+        let button = UIBarButtonItem(image: image ,style: .done, target: self, action: #selector(openBottomSheet))
+        button.tintColor = AppTheme.shared.colors.secondary
+        navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func openBottomSheet() {
+        let genreVC = GenreListViewController()
+        genreVC.genreList = self.genreList
+        genreVC.selectedGenreIndex = self.selectedGenreIndex
+        genreVC.onClickListener = { index in
+            self.movieList.removeAll(keepingCapacity: false)
+            if index == self.selectedGenreIndex {
+                return
+            }
+            self.selectedGenreIndex = index
+            if index == 0 {
+                self.viewModel.changeByGenreId(id: -1)
+                return
+            }
+            let genre = self.genreList[index - 1]
+            if let id = genre.id {
+                self.viewModel.changeByGenreId(id: id)
+            }
+            
+        }
+        genreVC.modalPresentationStyle = .pageSheet
+
+        if let sheet = genreVC.sheetPresentationController {
+            sheet.detents = [.custom { _ in
+                return 100
+            }]
+        }
+        present(genreVC, animated: true)
     }
     
     

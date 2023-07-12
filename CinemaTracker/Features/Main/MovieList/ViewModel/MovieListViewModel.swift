@@ -16,28 +16,42 @@ final class MovieListViewModel : CoreViewModel {
     var listErrorMessage = ObservableObject<String?>(nil)
     var isLoading = ObservableObject<Bool>(true)
     
+    var genreList = ObservableList<GenreModel>()
+    
     var currentPage:Int = 1
     var totalPage: Int = 1
     
     let movieList = ObservableList<MovieModel>()
+    private var genreIds: Int? = nil
     
     func onInit() {
         getMovieList()
+        getGenreList()
     }
     
+    func changeByGenreId(id:Int) {
+        currentPage = 1
+        genreIds = nil
+        if id != -1 {
+            genreIds = id
+        }
+        movieList.clear()
+        getMovieList()
+    }
     
     func getPagination() {
         if currentPage <= totalPage && !isLoading.value  {
             self.getMovieList()
         }
     }
+    
     private func getMovieList(){
         self.isLoading.value = true
         service.fetchMovieList(
             page: currentPage,
             lang: "en",
             region: "US",
-            genreIds: nil,
+            genreIds: genreIds,
             path: getPath()) { result in
                 self.isLoading.value = false
                 switch(result) {
@@ -54,6 +68,19 @@ final class MovieListViewModel : CoreViewModel {
                     self.listErrorMessage.value = error.localizedDescription
                 }
             }
+    }
+    
+    private func getGenreList() {
+        service.fetchGenreList(lang: "en", region: "US") { result in
+            switch(result) {
+            case .success(let response):
+                if let list = response.genres {
+                    self.genreList.appendAllValue(list: list)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func getPath() -> MovieServicePath {

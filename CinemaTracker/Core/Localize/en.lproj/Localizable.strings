@@ -6,6 +6,8 @@
 "common_turkey" = "Turkey";
 "common_usa" = "USA";
 
+"common_all" = "All";
+
 /* HOME */
 "home_tab_item_text" = "Home";
 "home_up_coming_title" = "Box Office";

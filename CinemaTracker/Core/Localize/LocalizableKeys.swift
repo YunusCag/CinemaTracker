@@ -18,6 +18,7 @@ enum LocalizableKeys : String{
         case languageEnglish = "common_english"
         case regionTurkey = "common_turkey"
         case regionUSA = "common_usa"
+        case all = "common_all"
     }
     
     enum Home: String {

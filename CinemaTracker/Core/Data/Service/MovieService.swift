@@ -15,14 +15,20 @@ protocol MovieServiceProtocol {
         page: Int,
         lang: String,
         region: String,
-        genreIds: [Int]?,
+        genreIds: Int?,
         path: MovieServicePath,
         completion: @escaping (Result<MovieListResponse, Error>) -> Void
+    )
+    func fetchGenreList(
+        lang: String,
+        region: String,
+        completion: @escaping (Result<GenreListResponse, Error>) -> Void
     )
 }
 
 
 final class MovieService : MovieServiceProtocol {
+    
     static let shared: MovieService = MovieService()
     
     private let url = ApiConstant.BASE_URL.rawValue
@@ -35,7 +41,7 @@ final class MovieService : MovieServiceProtocol {
         page: Int,
         lang: String,
         region: String,
-        genreIds: [Int]?,
+        genreIds: Int?,
         path: MovieServicePath,
         completion: @escaping (Result<MovieListResponse, Error>) -> Void
     ) {
@@ -62,6 +68,7 @@ final class MovieService : MovieServiceProtocol {
             if let error = response.error {
                 print(error.localizedDescription)
                 completion(.failure(error))
+                return
             }
             
             guard let movieResponse = response.value else {
@@ -70,8 +77,41 @@ final class MovieService : MovieServiceProtocol {
             }
             completion(.success(movieResponse))
         }
-        
     }
+    
+    func fetchGenreList(
+        lang: String,
+        region: String,
+        completion: @escaping (Result<GenreListResponse, Error>) -> Void
+    ) {
+        let parameters = [
+            Constant.NetworkParamKey.apiKey : ApiConstant.API_KEY.rawValue,
+            Constant.NetworkParamKey.language : lang,
+            Constant.NetworkParamKey.region : region
+        ] as [String : Any]
+        
+        guard var url = URL(string: url) else {
+            return
+        }
+        url.append(path: MovieServicePath.GENRE_LIST_MOVIES_URL.rawValue)
+        
+        AF.request(
+            url,
+            parameters: parameters
+        ).responseDecodable(of:GenreListResponse.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+                completion(.failure(error))
+            }
+            
+            guard let genreListResponse = response.value else {
+                completion(.failure(NetworkError(type: .ParsingObjectError)))
+                return
+            }
+            completion(.success(genreListResponse))
+        }
+    }
+    
 }
 
 

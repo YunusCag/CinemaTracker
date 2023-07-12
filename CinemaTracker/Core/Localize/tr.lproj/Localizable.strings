@@ -6,6 +6,8 @@
 "common_turkey" = "Türkiye";
 "common_usa" = "Amerika";
 
+"common_all" = "Tümü";
+
 /* HOME */
 "home_tab_item_text" = "Anasayfa";
 "home_up_coming_title" = "Yakında Sinemalarda";
