@@ -8,6 +8,9 @@
 
 "common_all" = "Tümü";
 
+"common_dark_theme" = "Karanlık Tema";
+"common_light_theme" = "Aydınlık Tema";
+
 /* HOME */
 "home_tab_item_text" = "Anasayfa";
 "home_up_coming_title" = "Yakında Sinemalarda";
@@ -20,3 +23,6 @@
 
 /* Settings */
 "settings_tab_item_text" = "Ayarlar";
+"settings_language_choice" = "Dil Seçimi";
+"settings_region_choice" = "Bölge Seçimi";
+"settings_theme_choice" = "Tema Seçimi";

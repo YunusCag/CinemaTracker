@@ -19,6 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScrene = (scene as? UIWindowScene) else { return }
         let homeVC = UINavigationController(rootViewController: MainViewController())
         window = UIWindow(windowScene: windowScrene)
+        if AppTheme.shared.currentTheme == .Dark {
+            window?.overrideUserInterfaceStyle = .dark
+        } else {
+            window?.overrideUserInterfaceStyle = .light
+        }
+        
         window?.rootViewController = homeVC
         window?.makeKeyAndVisible()
         

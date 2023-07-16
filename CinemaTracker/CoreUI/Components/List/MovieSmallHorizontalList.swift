@@ -63,8 +63,8 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
     func setTitle(title: String) {
         titleView.setTitle(value: title)
     }
-    func addAllMovie(list: [MovieModel]) {
-        self.movieList.append(contentsOf: list)
+    func saveMovieList(list: [MovieModel]) {
+        self.movieList = list
         self.collectionView.reloadData()
     }
     

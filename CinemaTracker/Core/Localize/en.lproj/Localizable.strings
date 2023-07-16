@@ -8,6 +8,9 @@
 
 "common_all" = "All";
 
+"common_dark_theme" = "Dark Theme";
+"common_light_theme" = "Light Theme";
+
 /* HOME */
 "home_tab_item_text" = "Home";
 "home_up_coming_title" = "Box Office";
@@ -20,3 +23,7 @@
 
 /* Settings */
 "settings_tab_item_text" = "Settings";
+"settings_language_choice" = "Language Choice";
+"settings_region_choice" = "Region Choice";
+"settings_theme_choice" = "Theme Choice";
+

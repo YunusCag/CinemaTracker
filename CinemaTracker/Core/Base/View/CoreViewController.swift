@@ -36,5 +36,4 @@ class CoreViewController<T:CoreViewModel> : UIViewController {
     func bindObservable() {
         
     }
-    
 }

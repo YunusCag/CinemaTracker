@@ -66,11 +66,17 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func initTheme() {
+        let standartApperance = UITabBarAppearance()
+        standartApperance.configureWithOpaqueBackground()
+        standartApperance.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.4)
+        
+        
         self.tabBar.tintColor = AppTheme.shared.colors.secondary
         self.tabBar.unselectedItemTintColor = AppTheme.shared.colors.textPrimary
-        self.tabBar.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.2)
         self.tabBar.clipsToBounds = false
         self.tabBar.isTranslucent = true
+        self.tabBar.standardAppearance = standartApperance
+        self.tabBar.scrollEdgeAppearance = standartApperance
     }
     
 }

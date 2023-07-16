@@ -66,7 +66,7 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
     override func bindObservable() {
         viewModel.movieList.bind { movies in
             DispatchQueue.main.async {
-                self.movieList.append(contentsOf: movies)
+                self.movieList = movies
                 self.collectionView.reloadData()
             }
         }

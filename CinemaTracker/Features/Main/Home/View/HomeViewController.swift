@@ -23,7 +23,7 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         return scroll
     }()
     private lazy var largeHorizontalPager: MovieHorizontalPageList = {
-        let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250))
+        let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 12, width: screenWidth, height: 250))
         horizonal.setTitle(title: LocalizableKeys.Home.upComingTitle.getLocalized())
         return horizonal
     }()
@@ -45,6 +45,11 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         horizontal.setTitle(title: LocalizableKeys.Home.topRatedTitle.getLocalized())
         return horizontal
     }()
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self,name: .settingsChange,object: nil)
+    }
     
     override func setUpView() {
         view.addSubview(scrollView)
@@ -75,6 +80,7 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         let topRatedGesture = UITapGestureRecognizer(target: self, action: #selector(navigateTopRatedList))
         topRatedHorizontalList.addTitleTapGesture(gesture: topRatedGesture)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(onSettingChange), name: .settingsChange, object: nil)
     }
     
     override func initTheme() {
@@ -88,24 +94,29 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     override func bindObservable() {
         viewModel.upComingMovieList.bind { movieList in
             DispatchQueue.main.async {
-                self.largeHorizontalPager.addAllMovie(list: movieList)
+                self.largeHorizontalPager.saveMovieList(list: movieList)
             }
         }
         viewModel.trendingMovieList.bind { movieList in
             DispatchQueue.main.async {
-                self.trendingHorizontalList.addAllMovie(list: movieList)
+                self.trendingHorizontalList.saveMovieList(list: movieList)
             }
         }
         viewModel.popularMovieList.bind { movieList in
             DispatchQueue.main.async {
-                self.popularHorizontalList.addAllMovie(list: movieList)
+                self.popularHorizontalList.saveMovieList(list: movieList)
             }
         }
         viewModel.topRatedMovieList.bind { movieList in
             DispatchQueue.main.async {
-                self.topRatedHorizontalList.addAllMovie(list: movieList)
+                self.topRatedHorizontalList.saveMovieList(list: movieList)
             }
         }
+    }
+    
+    @objc func onSettingChange() {
+        print("onSettingChange called.")
+        self.viewModel.onInit()
     }
     
     @objc func navigateUpComingList() {

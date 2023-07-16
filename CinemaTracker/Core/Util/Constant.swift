@@ -26,4 +26,8 @@ struct Constant{
         static let apiKey = "api_key"
     }
     
+    struct NotificationCenterUtil {
+        static let SETTING_CHANGE_KEY = "setting_change_key"
+    }
+    
 }

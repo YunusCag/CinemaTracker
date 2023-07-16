@@ -10,6 +10,8 @@ import Foundation
 
 final class HomeViewModel : CoreViewModel {
     private let service: MovieServiceProtocol = MovieService.shared
+    private let regionManager: RegionProtocol = RegionManager.shared
+    private let languageManager: LanguageProtocol = LanguageTypeManager.shared
     
     let upComingMovieList = ObservableList<MovieModel> ()
     let upComingErrorMessage = ObservableObject<String?> (nil)
@@ -34,14 +36,15 @@ final class HomeViewModel : CoreViewModel {
     private func getUpComing() {
         service.fetchMovieList(
             page: 1,
-            lang: "en",
-            region: "US",
+            lang: languageManager.languageType.rawValue,
+            region: regionManager.region.rawValue,
             genreIds: nil,
             path: .UPCOMING_MOVIES_URL
         ) { result in
             switch result {
             case .success(let response):
                 if let list = response.results{
+                    self.upComingMovieList.clear()
                     self.upComingMovieList.appendAllValue(list: list)
                 }
                 
@@ -54,14 +57,15 @@ final class HomeViewModel : CoreViewModel {
     private func getTrending() {
         service.fetchMovieList(
             page: 1,
-            lang: "en",
-            region: "US",
+            lang: languageManager.languageType.rawValue,
+            region: regionManager.region.rawValue,
             genreIds: nil,
             path: .TRENDING_MOVIES_URL
         ) { result in
             switch result {
             case .success(let response):
                 if let list = response.results{
+                    self.trendingMovieList.clear()
                     self.trendingMovieList.appendAllValue(list: list)
                 }
                 
@@ -74,14 +78,15 @@ final class HomeViewModel : CoreViewModel {
     private func getPopular() {
         service.fetchMovieList(
             page: 1,
-            lang: "en",
-            region: "US",
+            lang: languageManager.languageType.rawValue,
+            region: regionManager.region.rawValue,
             genreIds: nil,
             path: .POPULAR_MOVIES_URL
         ) { result in
             switch result {
             case .success(let response):
                 if let list = response.results{
+                    self.popularMovieList.clear()
                     self.popularMovieList.appendAllValue(list: list)
                 }
                 
@@ -94,14 +99,15 @@ final class HomeViewModel : CoreViewModel {
     private func getTopRated() {
         service.fetchMovieList(
             page: 1,
-            lang: "en",
-            region: "US",
+            lang: languageManager.languageType.rawValue,
+            region: regionManager.region.rawValue,
             genreIds: nil,
             path: .TOP_RATED_MOVIES_URL
         ) { result in
             switch result {
             case .success(let response):
                 if let list = response.results{
+                    self.topRatedMovieList.clear()
                     self.topRatedMovieList.appendAllValue(list: list)
                 }
                 

@@ -19,6 +19,8 @@ enum LocalizableKeys : String{
         case regionTurkey = "common_turkey"
         case regionUSA = "common_usa"
         case all = "common_all"
+        case darkTheme = "common_dark_theme"
+        case lightTheme = "common_light_theme"
     }
     
     enum Home: String {
@@ -35,5 +37,8 @@ enum LocalizableKeys : String{
     
     enum Settings: String {
         case tabItem = "settings_tab_item_text"
+        case languageChoice = "settings_language_choice"
+        case regionChoice = "settings_region_choice"
+        case themeChoice = "settings_theme_choice"
     }
 }
