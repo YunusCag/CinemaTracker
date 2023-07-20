@@ -37,6 +37,8 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
         return collectionView
     }()
     
+    var listener: ((MovieModel) -> Void)? = nil
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -97,6 +99,9 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?(self.movieList[indexPath.row])
     }
     
     @objc func scrollNext() {

@@ -26,3 +26,13 @@
 "settings_language_choice" = "Dil Seçimi";
 "settings_region_choice" = "Bölge Seçimi";
 "settings_theme_choice" = "Tema Seçimi";
+
+/* Movie Detail */
+"movie_detail_country" = "Ülke:";
+"movie_detail_genre" = "Tür:";
+"movie_detail_budget" = "Bütçe:";
+"movie_detail_currency" = "$";
+"movie_detail_revenue" = "Hasılat:";
+"movie_detail_release_date" = "Vizyon Tarihi:";
+"movie_detail_cast" = "Oyuncular";
+"movie_detail_crew" = "Prodüksiyon";

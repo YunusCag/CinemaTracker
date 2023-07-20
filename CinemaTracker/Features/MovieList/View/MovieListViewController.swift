@@ -153,4 +153,7 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.movieDetailListener(self.movieList[indexPath.row])
+    }
 }

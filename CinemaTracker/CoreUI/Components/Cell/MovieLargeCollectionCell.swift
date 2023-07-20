@@ -12,24 +12,17 @@ import AlamofireImage
 
 class MovieLargeCollectionCell: UICollectionViewCell {
     
-    private lazy var largeImage: UIImageView = {
-        let image = UIImageView()
+    private lazy var largeImage: MovieImageView = {
+        let image = MovieImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         image.layer.cornerRadius = 10
         image.layer.masksToBounds = true
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
-        image.isHidden = true
         return image
     }()
     
     private lazy var labelName: AppLabel = AppLabel()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.color = AppTheme.shared.colors.secondary
-        indicator.startAnimating()
-        return indicator
-    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,12 +37,7 @@ class MovieLargeCollectionCell: UICollectionViewCell {
     private func createView() {
         addSubview(labelName)
         addSubview(largeImage)
-        addSubview(activityIndicator)
         
-        activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
         
         labelName.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(16)
@@ -73,15 +61,6 @@ class MovieLargeCollectionCell: UICollectionViewCell {
     
     func saveMovie(movie:MovieModel) {
         labelName.text = movie.title ?? Constant.StringParameter.EMPTY_STRING
-        if let posterUrl = movie.posterPath {
-            if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(posterUrl)") {
-                print(url.description)
-                largeImage.af.setImage(withURL: url, completion:  { data in
-                    self.largeImage.isHidden = false
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
-                })
-            }
-        }
+        largeImage.saveUrl(path: movie.posterPath)
     }
 }

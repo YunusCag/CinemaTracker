@@ -27,3 +27,12 @@
 "settings_region_choice" = "Region Choice";
 "settings_theme_choice" = "Theme Choice";
 
+/* Movie Detail */
+"movie_detail_country" = "Country:";
+"movie_detail_genre" = "Genre:";
+"movie_detail_budget" = "Budget:";
+"movie_detail_currency" = "$";
+"movie_detail_revenue" = "Revenue:";
+"movie_detail_release_date" = "Release Date:";
+"movie_detail_cast" = "Cast";
+"movie_detail_crew" = "Crew";

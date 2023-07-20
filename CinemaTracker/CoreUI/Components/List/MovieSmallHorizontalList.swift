@@ -30,6 +30,7 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
         return collectionView
     }()
     
+    var listener: ((MovieModel) -> Void)? = nil
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -95,6 +96,10 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
     
     func addTitleTapGesture(gesture:UITapGestureRecognizer) {
         titleView.setTapEvent(gesture: gesture)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        listener?(self.movieList[indexPath.row])
     }
     
 }

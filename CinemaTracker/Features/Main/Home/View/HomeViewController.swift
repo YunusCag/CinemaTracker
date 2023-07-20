@@ -81,6 +81,13 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         topRatedHorizontalList.addTitleTapGesture(gesture: topRatedGesture)
         
         NotificationCenter.default.addObserver(self, selector: #selector(onSettingChange), name: .settingsChange, object: nil)
+        
+        
+        
+        self.largeHorizontalPager.listener = self.movieDetailListener
+        self.trendingHorizontalList.listener = self.movieDetailListener
+        self.popularHorizontalList.listener = self.movieDetailListener
+        self.topRatedHorizontalList.listener = self.movieDetailListener
     }
     
     override func initTheme() {

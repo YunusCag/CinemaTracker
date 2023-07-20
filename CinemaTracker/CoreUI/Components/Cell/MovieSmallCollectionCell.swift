@@ -14,16 +14,17 @@ import AlamofireImage
 class MovieSmallCollectionCell: UICollectionViewCell {
     
     
-    private lazy var imageSmall: UIImageView = {
-        let image = UIImageView()
+    private lazy var imageSmall: MovieImageView = {
+        let image = MovieImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         image.layer.cornerRadius = 10
         image.layer.masksToBounds = true
         image.clipsToBounds = true
         image.contentMode = .scaleAspectFill
-        image.isHidden = true
         return image
     }()
+    
     private lazy var labelName: AppLabel = AppLabel()
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
         indicator.color = AppTheme.shared.colors.secondary
@@ -46,12 +47,7 @@ class MovieSmallCollectionCell: UICollectionViewCell {
     private func createView() {
         addSubview(imageSmall)
         addSubview(labelName)
-        addSubview(activityIndicator)
         
-        activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
         imageSmall.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview()
@@ -72,16 +68,6 @@ class MovieSmallCollectionCell: UICollectionViewCell {
     
     func saveMovie(movie:MovieModel) {
         labelName.text = movie.title ?? Constant.StringParameter.EMPTY_STRING
-        if let posterUrl = movie.posterPath {
-            print(posterUrl)
-            if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(posterUrl)") {
-                print(url.description)
-                self.imageSmall.af.setImage(withURL: url, completion:  { data in
-                    self.imageSmall.isHidden = false
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
-                })
-            }
-        }
+        imageSmall.saveUrl(path: movie.posterPath)
     }
 }

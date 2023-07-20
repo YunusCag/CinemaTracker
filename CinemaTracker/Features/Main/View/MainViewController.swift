@@ -34,6 +34,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewWillAppear(animated)
         setUpView()
         initTheme()
+        navigationItem.backButtonTitle = Constant.StringParameter.EMPTY_STRING
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

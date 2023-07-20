@@ -12,7 +12,15 @@ import Foundation
 struct Constant{
     struct StringParameter {
         static let EMPTY_STRING = ""
+        static let SPACE_STRING = " "
+        static let VERTICAL_BAR = " | "
     }
+    
+    struct DateFormatUtil {
+        static let basicInputFormat = "yyyy-MM-dd"
+        static let detailFormat = "dd MMMM yyyy"
+    }
+    
     struct DurationUtil {
         static let HOME_AUTO_SCROLL_DURATION = 5.0
     }

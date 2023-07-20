@@ -24,6 +24,20 @@ protocol MovieServiceProtocol {
         region: String,
         completion: @escaping (Result<GenreListResponse, Error>) -> Void
     )
+    
+    func fetchMovieDetail(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<MovieDetailResponse, Error>) -> Void
+    )
+    
+    func fetCastCrew(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<CastCrewResponse, Error>) -> Void
+    )
 }
 
 
@@ -102,6 +116,7 @@ final class MovieService : MovieServiceProtocol {
             if let error = response.error {
                 print(error.localizedDescription)
                 completion(.failure(error))
+                return
             }
             
             guard let genreListResponse = response.value else {
@@ -109,6 +124,75 @@ final class MovieService : MovieServiceProtocol {
                 return
             }
             completion(.success(genreListResponse))
+        }
+    }
+    
+    func fetchMovieDetail(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<MovieDetailResponse, Error>) -> Void
+    ){
+        let parameters = [
+            Constant.NetworkParamKey.apiKey : ApiConstant.API_KEY.rawValue,
+            Constant.NetworkParamKey.language : lang,
+            Constant.NetworkParamKey.region : region
+        ] as [String : Any]
+        
+        guard var url = URL(string: url) else {
+            return
+        }
+        url.append(path: MovieServicePath.getMovieDetailUrl(movieId: movieId))
+        
+        AF.request(
+            url,
+            parameters: parameters
+        ).responseDecodable(of: MovieDetailResponse.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+            
+            guard let movieDetail = response.value else {
+                completion(.failure(NetworkError(type: .ParsingObjectError)))
+                return
+            }
+            completion(.success(movieDetail))
+        }
+    }
+    
+    func fetCastCrew(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<CastCrewResponse, Error>) -> Void
+    ){
+        let parameters = [
+            Constant.NetworkParamKey.apiKey : ApiConstant.API_KEY.rawValue,
+            Constant.NetworkParamKey.language : lang,
+            Constant.NetworkParamKey.region : region
+        ] as [String : Any]
+        
+        guard var url = URL(string: url) else {
+            return
+        }
+        url.append(path: MovieServicePath.getCreditPath(movieId: movieId))
+        AF.request(
+            url,
+            parameters: parameters
+        ).responseDecodable(of: CastCrewResponse.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+            
+            guard let castCrew = response.value else {
+                completion(.failure(NetworkError(type: .ParsingObjectError)))
+                return
+            }
+            completion(.success(castCrew))
         }
     }
     

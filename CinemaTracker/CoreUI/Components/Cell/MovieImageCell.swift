@@ -8,23 +8,17 @@
 import Foundation
 import UIKit
 import SnapKit
+import AlamofireImage
 
 class MovieImageCell: UICollectionViewCell {
     
-    private lazy var largeImage: UIImageView = {
-        let image = UIImageView()
+    private lazy var largeImage: MovieImageView = {
+        let image = MovieImageView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         image.layer.masksToBounds = true
         image.contentMode = .scaleAspectFill
-        image.isHidden = true
         return image
     }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.color = AppTheme.shared.colors.secondary
-        indicator.startAnimating()
-        return indicator
-    }()
     
     
     static let identifier = "movie_image_cell"
@@ -40,12 +34,6 @@ class MovieImageCell: UICollectionViewCell {
     
     private func createView() {
         addSubview(largeImage)
-        addSubview(activityIndicator)
-        
-        activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
         
         largeImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -56,15 +44,6 @@ class MovieImageCell: UICollectionViewCell {
     }
     
     func saveMovie(movie:MovieModel) {
-        if let posterUrl = movie.posterPath {
-            if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(posterUrl)") {
-                print(url.description)
-                largeImage.af.setImage(withURL: url, completion:  { data in
-                    self.largeImage.isHidden = false
-                    self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true
-                })
-            }
-        }
+        largeImage.saveUrl(path: movie.posterPath)
     }
 }

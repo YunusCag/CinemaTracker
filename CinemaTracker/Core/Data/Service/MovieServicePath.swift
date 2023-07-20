@@ -18,3 +18,13 @@ enum MovieServicePath: String {
 
 
 
+
+extension MovieServicePath {
+    static func getMovieDetailUrl(movieId:Int) -> String {
+        return "movie/\(movieId)"
+    }
+    
+    static func getCreditPath(movieId:Int) -> String {
+        return "movie/\(movieId)/credits"
+    }
+}
