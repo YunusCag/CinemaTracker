@@ -51,5 +51,6 @@ enum LocalizableKeys : String{
         case releaseDate = "movie_detail_release_date"
         case cast = "movie_detail_cast"
         case crew = "movie_detail_crew"
+        case trailer = "movie_detail_trailer"
     }
 }

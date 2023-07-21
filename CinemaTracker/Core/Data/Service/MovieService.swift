@@ -38,6 +38,13 @@ protocol MovieServiceProtocol {
         region: String,
         completion: @escaping (Result<CastCrewResponse, Error>) -> Void
     )
+    
+    func fetchMovieVideo(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<MovieVideoResponse, Error>) -> Void
+    )
 }
 
 
@@ -196,6 +203,40 @@ final class MovieService : MovieServiceProtocol {
         }
     }
     
+    
+    func fetchMovieVideo(
+        movieId: Int,
+        lang: String,
+        region: String,
+        completion: @escaping (Result<MovieVideoResponse, Error>) -> Void
+    ){
+        let parameters = [
+            Constant.NetworkParamKey.apiKey : ApiConstant.API_KEY.rawValue,
+            Constant.NetworkParamKey.language : lang,
+            Constant.NetworkParamKey.region : region
+        ] as [String : Any]
+        
+        guard var url = URL(string: url) else {
+            return
+        }
+        url.append(path: MovieServicePath.getMovieVideoPath(movieId: movieId))
+        AF.request(
+            url,
+            parameters: parameters
+        ).responseDecodable(of: MovieVideoResponse.self) { response in
+            if let error = response.error {
+                print(error.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+            
+            guard let videoResponse = response.value else {
+                completion(.failure(NetworkError(type: .ParsingObjectError)))
+                return
+            }
+            completion(.success(videoResponse))
+        }
+    }
 }
 
 

@@ -27,4 +27,8 @@ extension MovieServicePath {
     static func getCreditPath(movieId:Int) -> String {
         return "movie/\(movieId)/credits"
     }
+    
+    static func getMovieVideoPath(movieId:Int) -> String {
+        return "movie/\(movieId)/videos"
+    }
 }

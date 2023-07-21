@@ -56,6 +56,7 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
         }
         
         self.navigationController?.navigationBar.tintColor = AppTheme.shared.colors.secondary
+        navigationItem.backButtonTitle = Constant.StringParameter.EMPTY_STRING
         
     }
     

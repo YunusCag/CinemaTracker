@@ -54,6 +54,11 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         return list
     }()
     
+    private lazy var videoListView: VideoListView = {
+       let list = VideoListView(frame: CGRect(x: 0, y: crewtListView.frame.maxY + 12, width: view.frame.width, height: 225))
+        return list
+    }()
+    
     
     var movie:MovieModel? = nil
     
@@ -81,7 +86,7 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         self.scrollView.addSubview(detailOverview)
         
         
-        let height = self.largeImage.frame.height + self.detailTopView.frame.height + self.detailOverview.frame.height + self.castListView.frame.height + self.crewtListView.frame.height + 80
+        let height = self.largeImage.frame.height + self.detailTopView.frame.height + self.detailOverview.frame.height + 80
         self.scrollView.contentSize = CGSize(width: view.frame.width, height: height)
 
         
@@ -108,6 +113,8 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         viewModel.casts.bind { casts in
             DispatchQueue.main.async {
                 if !casts.isEmpty {
+                    let contentSize = self.scrollView.contentSize
+                    self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentSize.height + self.castListView.frame.height)
                     self.scrollView.addSubview(self.castListView)
                     self.castListView.save(list: casts)
                 }
@@ -116,8 +123,21 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         viewModel.crews.bind { crews in
             DispatchQueue.main.async {
                 if !crews.isEmpty{
+                    let contentSize = self.scrollView.contentSize
+                    self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentSize.height + self.crewtListView.frame.height)
                     self.scrollView.addSubview(self.crewtListView)
                     self.crewtListView.save(list: crews)
+                }
+            }
+        }
+        
+        viewModel.videoList.bind { videoList in
+            DispatchQueue.main.async {
+                if !videoList.isEmpty {
+                    let contentSize = self.scrollView.contentSize
+                    self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentSize.height + self.videoListView.frame.height)
+                    self.scrollView.addSubview(self.videoListView)
+                    self.videoListView.save(list: videoList)
                 }
             }
         }

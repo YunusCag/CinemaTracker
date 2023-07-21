@@ -44,7 +44,28 @@ class MovieImageView: UIImageView {
             self.activityIndicator.startAnimating()
             
             if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(backdropPath)") {
-                self.af.setImage(withURL: url,completion:  { data in
+                self.af.setImage(withURL: url,runImageTransitionIfCached:true,completion:  { data in
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    if data.error != nil {
+                        self.image = UIImage(systemName: "exclamationmark.circle.fill")?.withTintColor(AppTheme.shared.colors.secondary)
+                        return
+                    }
+                    self.image = data.value
+                    
+                })
+            }
+        }
+    }
+    
+    func saveUrl(videoId:String?) {
+        if let id = videoId {
+            
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+            
+            if let url = URL(string: "http://img.youtube.com/vi/\(id)/default.jpg") {
+                self.af.setImage(withURL: url,runImageTransitionIfCached:true,completion:  { data in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     if data.error != nil {
