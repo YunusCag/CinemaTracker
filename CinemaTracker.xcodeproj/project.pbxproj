@@ -58,6 +58,8 @@
 		0BBBF1C72A6AAAFA00426159 /* VideoSite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1C62A6AAAFA00426159 /* VideoSite.swift */; };
 		0BBBF1C92A6AB67300426159 /* VideoThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1C82A6AB67300426159 /* VideoThumbnailCell.swift */; };
 		0BBBF1CB2A6ACA5900426159 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1CA2A6ACA5900426159 /* VideoListView.swift */; };
+		0BBBF1CD2A6AD9D300426159 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */; };
+		0BBBF1D02A6ADB2100426159 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */; };
 		0BCDBB962A680F6D0078A590 /* MovieImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB952A680F6D0078A590 /* MovieImageView.swift */; };
 		0BCDBB982A68165F0078A590 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB972A68165F0078A590 /* DetailTopView.swift */; };
 		0BCDBB9A2A68468C0078A590 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB992A68468C0078A590 /* StringExtension.swift */; };
@@ -158,6 +160,7 @@
 		0BBBF1C62A6AAAFA00426159 /* VideoSite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSite.swift; sourceTree = "<group>"; };
 		0BBBF1C82A6AB67300426159 /* VideoThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailCell.swift; sourceTree = "<group>"; };
 		0BBBF1CA2A6ACA5900426159 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
+		0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		0BCDBB952A680F6D0078A590 /* MovieImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageView.swift; sourceTree = "<group>"; };
 		0BCDBB972A68165F0078A590 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		0BCDBB992A68468C0078A590 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 				0BD909E12A51C30500760F07 /* AlamofireNetworkActivityLogger in Frameworks */,
 				0B4773022A4835D80022F475 /* Alamofire in Frameworks */,
 				0B4773052A4835E80022F475 /* AlamofireImage in Frameworks */,
+				0BBBF1D02A6ADB2100426159 /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +427,7 @@
 				0B9CB50D2A66E7E2008ECFE1 /* MovieDetailViewController.swift */,
 				0BCDBB972A68165F0078A590 /* DetailTopView.swift */,
 				0B02B97F2A694D10008CFC48 /* MovieDescriptionView.swift */,
+				0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -743,6 +748,7 @@
 				0B4773042A4835E80022F475 /* AlamofireImage */,
 				0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */,
 				0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */,
+				0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */,
 			);
 			productName = CinemaTracker;
 			productReference = 0BFBF0F02A3719A5008BE188 /* CinemaTracker.app */;
@@ -823,6 +829,7 @@
 				0B4773032A4835E80022F475 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
 				0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
+				0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = 0BFBF0F12A3719A5008BE188 /* Products */;
 			projectDirPath = "";
@@ -870,6 +877,7 @@
 			files = (
 				0B8FB3ED2A5BEB6C00B593A2 /* TitleView.swift in Sources */,
 				0B9DA7B82A601B54000F52D6 /* RegionType.swift in Sources */,
+				0BBBF1CD2A6AD9D300426159 /* VideoViewController.swift in Sources */,
 				0BFA06622A52C7740082109F /* MovieLargeCollectionCell.swift in Sources */,
 				0BBBF1CB2A6ACA5900426159 /* VideoListView.swift in Sources */,
 				0B9CB50E2A66E7E2008ECFE1 /* MovieDetailViewController.swift in Sources */,
@@ -1131,8 +1139,8 @@
 				INFOPLIST_FILE = CinemaTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1158,8 +1166,8 @@
 				INFOPLIST_FILE = CinemaTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1323,6 +1331,14 @@
 				minimumVersion = 0.9.10;
 			};
 		};
+		0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger";
@@ -1353,6 +1369,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
 			productName = CHTCollectionViewWaterfallLayout;
+		};
+		0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
 		};
 		0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */ = {
 			isa = XCSwiftPackageProductDependency;

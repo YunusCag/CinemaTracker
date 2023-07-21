@@ -26,7 +26,7 @@ final class VideoListView: UIView,UICollectionViewDelegate, UICollectionViewData
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = .zero
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 200), collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +38,8 @@ final class VideoListView: UIView,UICollectionViewDelegate, UICollectionViewData
     }()
     
     private var videos:[MovieVideoModel] = []
+    
+    var listener:((MovieVideoModel) -> Void)? = nil
     
     
     required init?(coder: NSCoder) {
@@ -89,6 +91,11 @@ final class VideoListView: UIView,UICollectionViewDelegate, UICollectionViewData
         )
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let video = self.videos[indexPath.row]
+        self.listener?(video)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -100,12 +100,16 @@ class DetailTopView: UIView {
         smallImageView.saveUrl(path: detail.posterPath)
         
         if let countries = detail.productionCountries {
-            stackView.addArrangedSubview(labelCountry)
-            saveCountries(countries)
+            if !countries.isEmpty {
+                stackView.addArrangedSubview(labelCountry)
+                saveCountries(countries)
+            }
         }
         if let genres = detail.genres {
-            stackView.addArrangedSubview(labelGenre)
-            saveGenres(genres)
+            if !genres.isEmpty {
+                stackView.addArrangedSubview(labelGenre)
+                saveGenres(genres)
+            }
         }
         if let budget = detail.budget {
             stackView.addArrangedSubview(labelBudget)
@@ -122,6 +126,7 @@ class DetailTopView: UIView {
     }
     
     fileprivate func saveCountries(_ countries: [ProductionCountryModel]) {
+        
         let firstLine = "\(LocalizableKeys.MovieDetail.country.getLocalized())\t"
         var countryText = firstLine
         

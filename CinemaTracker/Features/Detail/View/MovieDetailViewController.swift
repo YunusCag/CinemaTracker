@@ -55,7 +55,7 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
     }()
     
     private lazy var videoListView: VideoListView = {
-       let list = VideoListView(frame: CGRect(x: 0, y: crewtListView.frame.maxY + 12, width: view.frame.width, height: 225))
+        let list = VideoListView(frame: CGRect(x: 0, y: crewtListView.frame.maxY + 12, width: view.frame.width, height: 225))
         return list
     }()
     
@@ -88,7 +88,7 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         
         let height = self.largeImage.frame.height + self.detailTopView.frame.height + self.detailOverview.frame.height + 80
         self.scrollView.contentSize = CGSize(width: view.frame.width, height: height)
-
+        
         
     }
     
@@ -138,6 +138,19 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
                     self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: contentSize.height + self.videoListView.frame.height)
                     self.scrollView.addSubview(self.videoListView)
                     self.videoListView.save(list: videoList)
+                    
+                    self.videoListView.listener = {(video:MovieVideoModel) in
+                        let controller = VideoViewController()
+                        controller.video = video
+                        controller.modalPresentationStyle = .pageSheet
+
+                        if let sheet = controller.sheetPresentationController {
+                            sheet.detents = [.custom { _ in
+                                return 320
+                            }]
+                        }
+                        self.present(controller, animated: true)
+                    }
                 }
             }
         }
