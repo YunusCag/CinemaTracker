@@ -42,13 +42,16 @@ class MovieImageView: UIImageView {
             
             self.activityIndicator.isHidden = false
             self.activityIndicator.startAnimating()
+            self.tintColor = .clear
             
             if let url = URL(string: "\(ApiConstant.BASE_IMAGE_URL.rawValue)\(backdropPath)") {
                 self.af.setImage(withURL: url,runImageTransitionIfCached:true,completion:  { data in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
+                    self.tintColor = .clear
                     if data.error != nil {
                         self.image = UIImage(systemName: "exclamationmark.circle.fill")?.withTintColor(AppTheme.shared.colors.secondary)
+                        self.tintColor = AppTheme.shared.colors.secondary
                         return
                     }
                     self.image = data.value
@@ -63,13 +66,16 @@ class MovieImageView: UIImageView {
             
             self.activityIndicator.isHidden = false
             self.activityIndicator.startAnimating()
+            self.tintColor = .clear
             
             if let url = URL(string: "http://img.youtube.com/vi/\(id)/default.jpg") {
                 self.af.setImage(withURL: url,runImageTransitionIfCached:true,completion:  { data in
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
+                    self.tintColor = .clear
                     if data.error != nil {
                         self.image = UIImage(systemName: "exclamationmark.circle.fill")?.withTintColor(AppTheme.shared.colors.secondary)
+                        self.tintColor = AppTheme.shared.colors.secondary
                         return
                     }
                     self.image = data.value

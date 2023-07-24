@@ -69,7 +69,7 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     func initTheme() {
         let standartApperance = UITabBarAppearance()
         standartApperance.configureWithOpaqueBackground()
-        standartApperance.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.4)
+        standartApperance.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.9)
         
         
         self.tabBar.tintColor = AppTheme.shared.colors.secondary

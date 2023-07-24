@@ -154,6 +154,27 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
                 }
             }
         }
+        
+        viewModel.isMovieLiked.bind { isLiked in
+            DispatchQueue.main.async {
+                var image = UIImage(systemName: "heart")
+                if isLiked {
+                    image = UIImage(systemName: "heart.fill")
+                }
+                let button = UIBarButtonItem(image: image, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.onLikeClicked))
+                button.tintColor = AppTheme.shared.colors.secondary
+                self.navigationItem.rightBarButtonItem = button
+            }
+        }
+        
+    }
+    
+    @objc func onLikeClicked() {
+        if viewModel.isMovieLiked.value {
+            viewModel.dislikeMovie()
+        } else {
+            viewModel.likeMovie()
+        }
     }
     
     func bindMovieDetail(movieDetail: MovieDetailResponse) {

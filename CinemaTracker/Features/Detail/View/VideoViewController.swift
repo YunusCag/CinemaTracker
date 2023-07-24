@@ -24,9 +24,11 @@ final class VideoViewController: UIViewController, YTPlayerViewDelegate {
     deinit {
         self.youtubePlayer.stopVideo()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppTheme.shared.colors.background
+        view.layer.cornerRadius = 20
         view.addSubview(youtubePlayer)
         
         if let key = self.video?.key {

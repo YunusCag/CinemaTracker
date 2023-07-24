@@ -52,6 +52,10 @@
 		0B9DA7B62A601A7A000F52D6 /* LanguageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9DA7B52A601A7A000F52D6 /* LanguageType.swift */; };
 		0B9DA7B82A601B54000F52D6 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9DA7B72A601B54000F52D6 /* RegionType.swift */; };
 		0B9DA7BA2A601C72000F52D6 /* RegionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9DA7B92A601C72000F52D6 /* RegionManager.swift */; };
+		0BB383312A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0BB3832F2A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld */; };
+		0BB383332A6E70B70063E46B /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB383322A6E70B70063E46B /* CoreDataHelper.swift */; };
+		0BB383352A6E8B8F0063E46B /* FavouriteMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB383342A6E8B8F0063E46B /* FavouriteMovieCell.swift */; };
+		0BB383372A6E9DDE0063E46B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB383362A6E9DDE0063E46B /* UIViewExtension.swift */; };
 		0BBBF1C12A6AA66300426159 /* MovieVideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1C02A6AA66300426159 /* MovieVideoModel.swift */; };
 		0BBBF1C32A6AA7D300426159 /* MovieVideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1C22A6AA7D300426159 /* MovieVideoResponse.swift */; };
 		0BBBF1C52A6AAA9000426159 /* VideoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1C42A6AAA9000426159 /* VideoType.swift */; };
@@ -154,6 +158,10 @@
 		0B9DA7B52A601A7A000F52D6 /* LanguageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageType.swift; sourceTree = "<group>"; };
 		0B9DA7B72A601B54000F52D6 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
 		0B9DA7B92A601C72000F52D6 /* RegionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionManager.swift; sourceTree = "<group>"; };
+		0BB383302A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CinemaTrackerApp.xcdatamodel; sourceTree = "<group>"; };
+		0BB383322A6E70B70063E46B /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		0BB383342A6E8B8F0063E46B /* FavouriteMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteMovieCell.swift; sourceTree = "<group>"; };
+		0BB383362A6E9DDE0063E46B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		0BBBF1C02A6AA66300426159 /* MovieVideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideoModel.swift; sourceTree = "<group>"; };
 		0BBBF1C22A6AA7D300426159 /* MovieVideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVideoResponse.swift; sourceTree = "<group>"; };
 		0BBBF1C42A6AAA9000426159 /* VideoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoType.swift; sourceTree = "<group>"; };
@@ -345,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				0B6A71AE2A39F0F700BB0484 /* ColorExtension.swift */,
+				0BB383362A6E9DDE0063E46B /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -430,6 +439,14 @@
 				0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0BB3832B2A6E6CF60063E46B /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				0BB383322A6E70B70063E46B /* CoreDataHelper.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 		0BBBF1BF2A6AA65200426159 /* Video */ = {
@@ -538,6 +555,7 @@
 				0B9DA7B32A5FF85B000F52D6 /* RadioOptionCell.swift */,
 				0B02B97B2A693CD1008CFC48 /* CastCrewCell.swift */,
 				0BBBF1C82A6AB67300426159 /* VideoThumbnailCell.swift */,
+				0BB383342A6E8B8F0063E46B /* FavouriteMovieCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -631,6 +649,7 @@
 				0BFBF0FC2A3719A5008BE188 /* Assets.xcassets */,
 				0BFBF0FE2A3719A5008BE188 /* LaunchScreen.storyboard */,
 				0BFBF1012A3719A5008BE188 /* Info.plist */,
+				0BB3832F2A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -697,6 +716,7 @@
 		0BFBF1302A371C85008BE188 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0BB3832B2A6E6CF60063E46B /* Local */,
 				0B8FB3EE2A5C345F00B593A2 /* Enums */,
 				0BD909CD2A519B2000760F07 /* Service */,
 				0BFBF1322A371CA4008BE188 /* Model */,
@@ -885,6 +905,8 @@
 				0B4772FC2A4826670022F475 /* Typography.swift in Sources */,
 				0B6A71A82A39D88B00BB0484 /* ThemeColor.swift in Sources */,
 				0B02B97C2A693CD1008CFC48 /* CastCrewCell.swift in Sources */,
+				0BB383332A6E70B70063E46B /* CoreDataHelper.swift in Sources */,
+				0BB383312A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld in Sources */,
 				0B9DA7BA2A601C72000F52D6 /* RegionManager.swift in Sources */,
 				0BFA06642A52D19A0082109F /* ObservableList.swift in Sources */,
 				0B02B9782A692B1C008CFC48 /* CrewModel.swift in Sources */,
@@ -924,6 +946,7 @@
 				0B9DA7B42A5FF85B000F52D6 /* RadioOptionCell.swift in Sources */,
 				0B4E72A22A59AF12008C780D /* LocalizableKeys.swift in Sources */,
 				0B9CB5122A66F506008ECFE1 /* MovieDetailResponse.swift in Sources */,
+				0BB383352A6E8B8F0063E46B /* FavouriteMovieCell.swift in Sources */,
 				0B9DA7B62A601A7A000F52D6 /* LanguageType.swift in Sources */,
 				0BBBF1C52A6AAA9000426159 /* VideoType.swift in Sources */,
 				0B6A71A62A39D7A400BB0484 /* AppTheme.swift in Sources */,
@@ -942,6 +965,7 @@
 				0B4773112A4838090022F475 /* MainViewModel.swift in Sources */,
 				0BD909D92A51AAB100760F07 /* MovieModel.swift in Sources */,
 				0B4773172A4839F50022F475 /* SettingsViewController.swift in Sources */,
+				0BB383372A6E9DDE0063E46B /* UIViewExtension.swift in Sources */,
 				0B47731C2A483A8D0022F475 /* FavouriteViewModel.swift in Sources */,
 				0BBBF1C32A6AA7D300426159 /* MovieVideoResponse.swift in Sources */,
 				0BD597EB2A55770E00357D8A /* MovieSmallCollectionCell.swift in Sources */,
@@ -1381,6 +1405,19 @@
 			productName = AlamofireNetworkActivityLogger;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		0BB3832F2A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0BB383302A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodel */,
+			);
+			currentVersion = 0BB383302A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodel */;
+			path = CinemaTrackerApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0BFBF0E82A3719A4008BE188 /* Project object */;
 }

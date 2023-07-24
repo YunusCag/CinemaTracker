@@ -16,11 +16,15 @@ final class MovieDetailViewModel: CoreViewModel {
     private let service: MovieServiceProtocol = MovieService.shared
     private let regionManager: RegionProtocol = RegionManager.shared
     private let languageManager: LanguageProtocol = LanguageTypeManager.shared
+    private let coreDataHelper: CoreDataHelperProtocol = CoreDataHelper.shared
     
     
     var movieDetail = ObservableObject<MovieDetailResponse?>(nil)
     var isDetailLoading = ObservableObject<Bool>(false)
     var detailErrorMesssage = ObservableObject<String?>(nil)
+    
+    var isMovieLiked = ObservableObject<Bool>(false)
+    
     
     var casts = ObservableList<CastModel>()
     var crews = ObservableList<CrewModel>()
@@ -32,6 +36,7 @@ final class MovieDetailViewModel: CoreViewModel {
             getMovieDetail(movieId: movieId)
             getCastCrew(movieId: movieId)
             getMovieVideo(movieId: movieId)
+            getMovieIsLiked(movieId: movieId)
         }
     }
     
@@ -92,6 +97,34 @@ final class MovieDetailViewModel: CoreViewModel {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    private func getMovieIsLiked(movieId: Int) {
+        coreDataHelper.fetchMovies { result in
+            switch(result) {
+            case .success(let movies):
+                let movie = movies.first { movie in
+                    movie.id == movieId
+                }
+                self.isMovieLiked.value = movie != nil
+            case .failure(_):
+                self.isMovieLiked.value = false
+            }
+        }
+    }
+    
+    func likeMovie() {
+        if let movie = self.movie {
+            coreDataHelper.insertMovie(movie: movie) { result in
+                self.isMovieLiked.value = true
+            }
+        }
+    }
+    func dislikeMovie() {
+        if let id = self.movie?.id {
+            coreDataHelper.deleteMovie(id: id)
+            self.isMovieLiked.value = false
         }
     }
 }

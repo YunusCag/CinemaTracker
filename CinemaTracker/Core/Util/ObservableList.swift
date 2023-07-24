@@ -28,9 +28,11 @@ final class ObservableList<T> {
         values.append(contentsOf: list)
         self.listener?(values)
     }
-    func clear(){
+    func clear(callListener:Bool = true){
         values.removeAll(keepingCapacity: false)
-        self.listener?([])
+        if callListener {
+            self.listener?([])
+        }
     }
     
 }

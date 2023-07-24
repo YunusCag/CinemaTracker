@@ -16,6 +16,7 @@ final class MovieDescription: UIView {
         label.numberOfLines = 5
         label.lineBreakMode = .byTruncatingTail
         label.sizeToFit()
+        label.textAlignment = .justified
         return label
     }()
     
@@ -36,7 +37,7 @@ final class MovieDescription: UIView {
         labelOverview.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(16)
+            make.right.equalToSuperview().inset(16)
         }
     }
     
