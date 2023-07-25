@@ -11,6 +11,10 @@
 "common_dark_theme" = "Karanlık Tema";
 "common_light_theme" = "Aydınlık Tema";
 
+"common_no_connection" = "İnternet bağlanızı kontrol edin.";
+"common_eror_text" = "Beklenmeyen bir hata oluştu.";
+"common_eror_button" = "Yeniden Dene";
+
 /* HOME */
 "home_tab_item_text" = "Anasayfa";
 "home_up_coming_title" = "Yakında Sinemalarda";

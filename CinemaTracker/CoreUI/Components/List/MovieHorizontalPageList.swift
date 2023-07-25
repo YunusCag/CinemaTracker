@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
+    
     
     private lazy var screenWidth: CGFloat = frame.width
     private lazy var screenHeight: CGFloat = frame.height
@@ -21,8 +21,13 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     private var currentIndex = 0
     private var timer: Timer? = nil
     
+    private lazy var networkErrorView: NetworkErrorView = {
+        let error = NetworkErrorView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 200))
+        error.isHidden = true
+        return error
+    }()
     private lazy var collectionView: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
+        let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.sectionInset = .zero
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 250), collectionViewLayout: layout)
@@ -53,6 +58,7 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     private func createView() {
         addSubview(titleView)
         addSubview(collectionView)
+        addSubview(networkErrorView)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -66,7 +72,15 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
             make.width.equalToSuperview()
             make.height.equalTo(250)
         }
-        startTimer()
+        
+        networkErrorView.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.bottom).offset(8)
+            make.left.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(200)
+        }
+        
+        networkErrorView.isHidden = true
         
     }
     
@@ -76,6 +90,18 @@ final class MovieHorizontalPageList: UIView, UICollectionViewDelegate, UICollect
     func saveMovieList(list: [MovieModel]) {
         self.movieList = list
         self.collectionView.reloadData()
+        if !movieList.isEmpty {
+            startTimer()
+        }
+        self.collectionView.isHidden = false
+        self.networkErrorView.isHidden = true
+    }
+    
+    func saveError(errorMessage:String?, gesture:UITapGestureRecognizer) {
+        self.networkErrorView.isHidden = false
+        self.collectionView.isHidden = true
+        self.networkErrorView.saveMessage(message: errorMessage)
+        self.networkErrorView.saveTabGesture(gesture: gesture)
     }
     
     func initStyle() {

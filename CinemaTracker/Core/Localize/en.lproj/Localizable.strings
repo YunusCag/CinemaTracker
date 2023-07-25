@@ -11,6 +11,10 @@
 "common_dark_theme" = "Dark Theme";
 "common_light_theme" = "Light Theme";
 
+"common_no_connection" = "Please check your connection";
+"common_eror_text" = "There was a unknown error";
+"common_eror_button" = "Refresh";
+
 /* HOME */
 "home_tab_item_text" = "Home";
 "home_up_coming_title" = "Box Office";

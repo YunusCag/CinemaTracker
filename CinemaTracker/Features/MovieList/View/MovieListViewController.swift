@@ -78,6 +78,10 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
             }
         }
         viewModel.genreList.bind { genres in
+            if genres.isEmpty {
+                return
+            }
+            
             DispatchQueue.main.async {
                 self.genreList = genres
                 self.createRightActionItem()

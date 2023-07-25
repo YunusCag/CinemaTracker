@@ -8,11 +8,11 @@
 import UIKit
 
 
-
 class CoreViewController<T:CoreViewModel> : UIViewController {
     
     lazy var viewModel : T = T()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -35,5 +35,9 @@ class CoreViewController<T:CoreViewModel> : UIViewController {
     
     func bindObservable() {
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
     }
 }

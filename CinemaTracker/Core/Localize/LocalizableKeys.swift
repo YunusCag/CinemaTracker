@@ -21,6 +21,9 @@ enum LocalizableKeys : String{
         case all = "common_all"
         case darkTheme = "common_dark_theme"
         case lightTheme = "common_light_theme"
+        case noConnection = "common_no_connection"
+        case errorText = "common_eror_text"
+        case errorButton = "common_eror_button"
     }
     
     enum Home: String {

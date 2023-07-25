@@ -64,6 +64,9 @@
 		0BBBF1CB2A6ACA5900426159 /* VideoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1CA2A6ACA5900426159 /* VideoListView.swift */; };
 		0BBBF1CD2A6AD9D300426159 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */; };
 		0BBBF1D02A6ADB2100426159 /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */; };
+		0BCCC1FE2A6FD39000D773B0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCC1FD2A6FD39000D773B0 /* NetworkMonitor.swift */; };
+		0BCCC2042A6FDCD800D773B0 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 0BCCC2032A6FDCD800D773B0 /* SPIndicator */; };
+		0BCCC2072A6FE3A800D773B0 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCCC2062A6FE3A800D773B0 /* NetworkErrorView.swift */; };
 		0BCDBB962A680F6D0078A590 /* MovieImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB952A680F6D0078A590 /* MovieImageView.swift */; };
 		0BCDBB982A68165F0078A590 /* DetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB972A68165F0078A590 /* DetailTopView.swift */; };
 		0BCDBB9A2A68468C0078A590 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCDBB992A68468C0078A590 /* StringExtension.swift */; };
@@ -169,6 +172,8 @@
 		0BBBF1C82A6AB67300426159 /* VideoThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoThumbnailCell.swift; sourceTree = "<group>"; };
 		0BBBF1CA2A6ACA5900426159 /* VideoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListView.swift; sourceTree = "<group>"; };
 		0BBBF1CC2A6AD9D300426159 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		0BCCC1FD2A6FD39000D773B0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		0BCCC2062A6FE3A800D773B0 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		0BCDBB952A680F6D0078A590 /* MovieImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieImageView.swift; sourceTree = "<group>"; };
 		0BCDBB972A68165F0078A590 /* DetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopView.swift; sourceTree = "<group>"; };
 		0BCDBB992A68468C0078A590 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 			files = (
 				0B4772FF2A4835C60022F475 /* SnapKit in Frameworks */,
 				0B8FB3F52A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout in Frameworks */,
+				0BCCC2042A6FDCD800D773B0 /* SPIndicator in Frameworks */,
 				0BD909E12A51C30500760F07 /* AlamofireNetworkActivityLogger in Frameworks */,
 				0B4773022A4835D80022F475 /* Alamofire in Frameworks */,
 				0B4773052A4835E80022F475 /* AlamofireImage in Frameworks */,
@@ -457,6 +463,14 @@
 			path = Video;
 			sourceTree = "<group>";
 		};
+		0BCCC2052A6FE39800D773B0 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				0BCCC2062A6FE3A800D773B0 /* NetworkErrorView.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		0BCDBB942A680F5E0078A590 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +531,7 @@
 				0BD597E62A55633400357D8A /* AppConstant.swift */,
 				0B9DA7B92A601C72000F52D6 /* RegionManager.swift */,
 				0B8A26322A643C9000E7ED5B /* LanguageTypeManager.swift */,
+				0BCCC1FD2A6FD39000D773B0 /* NetworkMonitor.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -669,6 +684,7 @@
 		0BFBF1282A371A1A008BE188 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0BCCC2052A6FE39800D773B0 /* Error */,
 				0BCDBB942A680F5E0078A590 /* Image */,
 				0B8FB3F62A5C4E2500B593A2 /* Loading */,
 				0B8FB3EB2A5BEB3600B593A2 /* Title */,
@@ -769,6 +785,7 @@
 				0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */,
 				0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */,
 				0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */,
+				0BCCC2032A6FDCD800D773B0 /* SPIndicator */,
 			);
 			productName = CinemaTracker;
 			productReference = 0BFBF0F02A3719A5008BE188 /* CinemaTracker.app */;
@@ -850,6 +867,7 @@
 				0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
 				0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
 				0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
+				0BCCC2022A6FDCD800D773B0 /* XCRemoteSwiftPackageReference "SPIndicator" */,
 			);
 			productRefGroup = 0BFBF0F12A3719A5008BE188 /* Products */;
 			projectDirPath = "";
@@ -950,6 +968,7 @@
 				0B9DA7B62A601A7A000F52D6 /* LanguageType.swift in Sources */,
 				0BBBF1C52A6AAA9000426159 /* VideoType.swift in Sources */,
 				0B6A71A62A39D7A400BB0484 /* AppTheme.swift in Sources */,
+				0BCCC1FE2A6FD39000D773B0 /* NetworkMonitor.swift in Sources */,
 				0B47730E2A4837EF0022F475 /* MainViewController.swift in Sources */,
 				0BE627862A3CAB8000475D95 /* CoreViewModel.swift in Sources */,
 				0B8FB3E82A5BE5F100B593A2 /* MovieListViewModel.swift in Sources */,
@@ -970,6 +989,7 @@
 				0BBBF1C32A6AA7D300426159 /* MovieVideoResponse.swift in Sources */,
 				0BD597EB2A55770E00357D8A /* MovieSmallCollectionCell.swift in Sources */,
 				0BD597E72A55633400357D8A /* AppConstant.swift in Sources */,
+				0BCCC2072A6FE3A800D773B0 /* NetworkErrorView.swift in Sources */,
 				0B9CB5102A66EA79008ECFE1 /* CoreViewControllerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1363,6 +1383,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		0BCCC2022A6FDCD800D773B0 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanvorobei/SPIndicator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		0BD909DF2A51C30500760F07 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger";
@@ -1398,6 +1426,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
 			productName = YouTubeiOSPlayerHelper;
+		};
+		0BCCC2032A6FDCD800D773B0 /* SPIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BCCC2022A6FDCD800D773B0 /* XCRemoteSwiftPackageReference "SPIndicator" */;
+			productName = SPIndicator;
 		};
 		0BD909E02A51C30500760F07 /* AlamofireNetworkActivityLogger */ = {
 			isa = XCSwiftPackageProductDependency;

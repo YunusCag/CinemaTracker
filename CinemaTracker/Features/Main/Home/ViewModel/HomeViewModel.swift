@@ -15,15 +15,19 @@ final class HomeViewModel : CoreViewModel {
     
     let upComingMovieList = ObservableList<MovieModel> ()
     let upComingErrorMessage = ObservableObject<String?> (nil)
+    var isUpComingLoading = false
     
     let trendingMovieList = ObservableList<MovieModel> ()
     let trendingErrorMessage = ObservableObject<String?> (nil)
+    private var isTrendingLoading = false
     
     let popularMovieList = ObservableList<MovieModel> ()
     let popularErrorMessage = ObservableObject<String?> (nil)
+    private var isPopularLoading = false
     
     let topRatedMovieList = ObservableList<MovieModel> ()
     let topRatedErrorMessage = ObservableObject<String?> (nil)
+    private var isTopRatedLoading = false
     
     
     func onInit() {
@@ -33,7 +37,12 @@ final class HomeViewModel : CoreViewModel {
         getTopRated()
     }
     
-    private func getUpComing() {
+    func getUpComing() {
+        if self.isUpComingLoading {
+            return
+        }
+        
+        self.isUpComingLoading = true
         service.fetchMovieList(
             page: 1,
             lang: languageManager.languageType.rawValue,
@@ -41,6 +50,7 @@ final class HomeViewModel : CoreViewModel {
             genreIds: nil,
             path: .UPCOMING_MOVIES_URL
         ) { result in
+            self.isUpComingLoading = false
             switch result {
             case .success(let response):
                 if let list = response.results{
@@ -54,7 +64,11 @@ final class HomeViewModel : CoreViewModel {
         }
     }
     
-    private func getTrending() {
+    func getTrending() {
+        if self.isTrendingLoading {
+            return
+        }
+        self.isTrendingLoading = true
         service.fetchMovieList(
             page: 1,
             lang: languageManager.languageType.rawValue,
@@ -62,6 +76,7 @@ final class HomeViewModel : CoreViewModel {
             genreIds: nil,
             path: .TRENDING_MOVIES_URL
         ) { result in
+            self.isTrendingLoading = false
             switch result {
             case .success(let response):
                 if let list = response.results{
@@ -75,7 +90,11 @@ final class HomeViewModel : CoreViewModel {
         }
     }
     
-    private func getPopular() {
+    func getPopular() {
+        if self.isPopularLoading {
+            return
+        }
+        self.isPopularLoading = true
         service.fetchMovieList(
             page: 1,
             lang: languageManager.languageType.rawValue,
@@ -83,6 +102,7 @@ final class HomeViewModel : CoreViewModel {
             genreIds: nil,
             path: .POPULAR_MOVIES_URL
         ) { result in
+            self.isPopularLoading = false
             switch result {
             case .success(let response):
                 if let list = response.results{
@@ -96,7 +116,11 @@ final class HomeViewModel : CoreViewModel {
         }
     }
     
-    private func getTopRated() {
+    func getTopRated() {
+        if self.isTopRatedLoading {
+            return
+        }
+        self.isTopRatedLoading = true
         service.fetchMovieList(
             page: 1,
             lang: languageManager.languageType.rawValue,
@@ -104,6 +128,7 @@ final class HomeViewModel : CoreViewModel {
             genreIds: nil,
             path: .TOP_RATED_MOVIES_URL
         ) { result in
+            self.isTopRatedLoading = false
             switch result {
             case .success(let response):
                 if let list = response.results{

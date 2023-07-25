@@ -15,6 +15,13 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
     
     private var movieList: [MovieModel] = []
     private lazy var titleView: TitleView = TitleView()
+    
+    private lazy var networkErrorView: NetworkErrorView = {
+        let error = NetworkErrorView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 200))
+        error.isHidden = true
+        return error
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -46,6 +53,7 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
     private func createView() {
         addSubview(titleView)
         addSubview(collectionView)
+        addSubview(networkErrorView)
         
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -59,6 +67,13 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
             make.width.equalToSuperview()
             make.height.equalTo(200)
         }
+        
+        networkErrorView.snp.makeConstraints { make in
+            make.top.equalTo(titleView.snp.bottom).offset(8)
+            make.left.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(200)
+        }
     }
     
     func setTitle(title: String) {
@@ -67,6 +82,15 @@ final class MovieSmallHorizontalList: UIView, UICollectionViewDelegate, UICollec
     func saveMovieList(list: [MovieModel]) {
         self.movieList = list
         self.collectionView.reloadData()
+        self.collectionView.isHidden = false
+        self.networkErrorView.isHidden = true
+    }
+    
+    func saveError(errorMessage:String?, gesture:UITapGestureRecognizer) {
+        self.networkErrorView.isHidden = false
+        self.collectionView.isHidden = true
+        self.networkErrorView.saveMessage(message: errorMessage)
+        self.networkErrorView.saveTabGesture(gesture: gesture)
     }
     
     func initStyle() {

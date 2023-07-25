@@ -104,22 +104,79 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
                 self.largeHorizontalPager.saveMovieList(list: movieList)
             }
         }
+        viewModel.upComingErrorMessage.bind { message in
+            if message == nil {
+                return
+            }
+            DispatchQueue.main.async {
+                let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onUpComingRefresh))
+                self.largeHorizontalPager.saveError(errorMessage: message,gesture: gesture)
+            }
+        }
+        
         viewModel.trendingMovieList.bind { movieList in
             DispatchQueue.main.async {
                 self.trendingHorizontalList.saveMovieList(list: movieList)
             }
         }
+        viewModel.trendingErrorMessage.bind { message in
+            if message == nil {
+                return
+            }
+            DispatchQueue.main.async {
+                let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onTrendingRefresh))
+                self.trendingHorizontalList.saveError(errorMessage: message, gesture: gesture)
+            }
+        }
+        
         viewModel.popularMovieList.bind { movieList in
             DispatchQueue.main.async {
                 self.popularHorizontalList.saveMovieList(list: movieList)
             }
         }
+        viewModel.popularErrorMessage.bind { message in
+            if message == nil {
+                return
+            }
+            DispatchQueue.main.async {
+                let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onPopularRefresh))
+                self.popularHorizontalList.saveError(errorMessage: message, gesture: gesture)
+            }
+        }
+        
         viewModel.topRatedMovieList.bind { movieList in
             DispatchQueue.main.async {
                 self.topRatedHorizontalList.saveMovieList(list: movieList)
             }
         }
+        
+        viewModel.topRatedErrorMessage.bind { message in
+            if message == nil {
+                return
+            }
+            DispatchQueue.main.async {
+                let gesture = UITapGestureRecognizer(target: self, action: #selector(self.onTopRatedRefresh))
+                self.topRatedHorizontalList.saveError(errorMessage: message, gesture: gesture)
+            }
+        }
     }
+    
+    @objc func onUpComingRefresh() {
+        self.viewModel.getUpComing()
+    }
+    
+    @objc func onTrendingRefresh() {
+        self.viewModel.getTrending()
+    }
+    
+    @objc func onPopularRefresh() {
+        self.viewModel.getPopular()
+    }
+    
+    @objc func onTopRatedRefresh() {
+        self.viewModel.getTopRated()
+    }
+    
     
     @objc func onSettingChange() {
         print("onSettingChange called.")

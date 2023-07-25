@@ -15,19 +15,15 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     private lazy var settingsVC: SettingsViewController = SettingsViewController()
     
     private lazy var viewModel: MainViewModel = MainViewModel()
-    /*
-     private lazy var tabController: UITabBarController = {
-     let tabBar = UITabBarController()
-     tabBar.setViewControllers([homeVC, favouriteVC, settingsVC], animated: true)
-     return tabBar
-     }()
-     */
     
-    
+    deinit {
+        NetworkMonitor.shared.stopMonitoring()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         viewModel.onInit()
+        NetworkMonitor.shared.startMonitoring()
     }
     
     override func viewWillAppear(_ animated: Bool) {
