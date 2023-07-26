@@ -25,6 +25,12 @@ final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UIC
         return collectionView
     }()
     
+    private lazy var emptyView: EmptyView = {
+        let empty = EmptyView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 200))
+        empty.isHidden = true
+        return empty
+    }()
+    
     private var movieList:[MovieModel] = []
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,12 +40,20 @@ final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UIC
     
     override func setUpView() {
         view.addSubview(collectionView)
+        view.addSubview(emptyView)
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().inset(8)
+            make.height.equalTo(200)
         }
         
         self.navigationController?.navigationBar.tintColor = AppTheme.shared.colors.secondary
@@ -54,7 +68,14 @@ final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UIC
         viewModel.movies.bind { movieList in
             DispatchQueue.main.async {
                 self.movieList = movieList
-                self.collectionView.reloadData()
+                if !movieList.isEmpty {
+                    self.collectionView.reloadData()
+                    self.collectionView.isHidden = false
+                    self.emptyView.isHidden = true
+                } else {
+                    self.collectionView.isHidden = true
+                    self.emptyView.isHidden = false
+                }
             }
         }
     }

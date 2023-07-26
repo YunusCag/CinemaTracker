@@ -24,6 +24,8 @@
 
 /* Favourite */
 "favourite_tab_item_text" = "Favourites";
+"favourite_empty_list_title" = "There are no movies in your favourite list.";
+
 
 /* Settings */
 "settings_tab_item_text" = "Settings";

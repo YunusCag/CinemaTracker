@@ -24,6 +24,7 @@
 
 /* Favourite */
 "favourite_tab_item_text" = "Favoriler";
+"favourite_empty_list_title" = "Favori listenizde film bulunmamaktadır.";
 
 /* Settings */
 "settings_tab_item_text" = "Ayarlar";

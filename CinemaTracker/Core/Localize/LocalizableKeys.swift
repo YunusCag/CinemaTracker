@@ -36,6 +36,7 @@ enum LocalizableKeys : String{
     
     enum Favourites: String {
         case tabItem = "favourite_tab_item_text"
+        case emptyListTitle = "favourite_empty_list_title"
     }
     
     enum Settings: String {
