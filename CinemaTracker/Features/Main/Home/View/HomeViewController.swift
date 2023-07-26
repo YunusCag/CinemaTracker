@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import GoogleMobileAds
+
 
 final class HomeViewController: CoreViewController <HomeViewModel> {
     
@@ -22,14 +24,24 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         scroll.showsHorizontalScrollIndicator = false
         return scroll
     }()
+    
     private lazy var largeHorizontalPager: MovieHorizontalPageList = {
         let horizonal = MovieHorizontalPageList(frame: CGRect(x: 0, y: 12, width: screenWidth, height: 250))
         horizonal.setTitle(title: LocalizableKeys.Home.upComingTitle.getLocalized())
         return horizonal
     }()
     
+    private lazy var bannerView:GADBannerView = {
+        let banner = GADBannerView()
+        banner.frame = CGRect(x: (screenWidth / 2 - 160), y: largeHorizontalPager.frame.maxY + 50, width: 320, height: 100)
+        banner.adUnitID = Constant.AdmobUtil.bannerAdId
+        banner.load(GADRequest())
+        banner.backgroundColor = .clear
+        return banner
+    }()
+    
     private lazy var trendingHorizontalList: MovieSmallHorizontalList = {
-        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: largeHorizontalPager.frame.maxY + 50, width: screenWidth, height: 200))
+        let horizontal = MovieSmallHorizontalList(frame: CGRect(x: 0, y: bannerView.frame.maxY + 10, width: screenWidth, height: 200))
         horizontal.setTitle(title: LocalizableKeys.Home.trendingTitle.getLocalized())
         return horizontal
     }()
@@ -47,6 +59,8 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
     }()
     
     
+    
+    
     deinit {
         NotificationCenter.default.removeObserver(self,name: .settingsChange,object: nil)
     }
@@ -61,12 +75,16 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
             make.bottom.equalToSuperview()
         }
         
+        bannerView.rootViewController = self
+        
         scrollView.addSubview(largeHorizontalPager)
+        scrollView.addSubview(bannerView)
+        
         scrollView.addSubview(trendingHorizontalList)
         scrollView.addSubview(popularHorizontalList)
         scrollView.addSubview(topRatedHorizontalList)
         
-        scrollView.contentSize = CGSize(width: screenWidth, height: 1000)
+        scrollView.contentSize = CGSize(width: screenWidth, height: 1150)
         
         let upComingGesture = UITapGestureRecognizer(target: self, action: #selector(navigateUpComingList))
         largeHorizontalPager.addTitleTapGesture(gesture: upComingGesture)
@@ -88,6 +106,7 @@ final class HomeViewController: CoreViewController <HomeViewModel> {
         self.trendingHorizontalList.listener = self.movieDetailListener
         self.popularHorizontalList.listener = self.movieDetailListener
         self.topRatedHorizontalList.listener = self.movieDetailListener
+        
     }
     
     override func initTheme() {

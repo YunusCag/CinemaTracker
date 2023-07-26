@@ -16,6 +16,7 @@
 		0B02B9822A697937008CFC48 /* CrewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B02B9812A697937008CFC48 /* CrewListView.swift */; };
 		0B0D30452A5EFAA900A52315 /* GenreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0D30442A5EFAA900A52315 /* GenreListViewController.swift */; };
 		0B2D1CFA2A71040D0077009F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D1CF92A71040D0077009F /* EmptyView.swift */; };
+		0B2D1CFE2A710F190077009F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 0B2D1CFD2A710F190077009F /* GoogleMobileAds */; };
 		0B4772FA2A48255D0022F475 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4772F92A48255D0022F475 /* AppLabel.swift */; };
 		0B4772FC2A4826670022F475 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4772FB2A4826670022F475 /* Typography.swift */; };
 		0B4772FF2A4835C60022F475 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4772FE2A4835C60022F475 /* SnapKit */; };
@@ -222,6 +223,7 @@
 				0B8FB3F52A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout in Frameworks */,
 				0BCCC2042A6FDCD800D773B0 /* SPIndicator in Frameworks */,
 				0BD909E12A51C30500760F07 /* AlamofireNetworkActivityLogger in Frameworks */,
+				0B2D1CFE2A710F190077009F /* GoogleMobileAds in Frameworks */,
 				0B4773022A4835D80022F475 /* Alamofire in Frameworks */,
 				0B4773052A4835E80022F475 /* AlamofireImage in Frameworks */,
 				0BBBF1D02A6ADB2100426159 /* YouTubeiOSPlayerHelper in Frameworks */,
@@ -670,10 +672,10 @@
 			children = (
 				0BFBF0F32A3719A5008BE188 /* AppDelegate.swift */,
 				0BFBF0F52A3719A5008BE188 /* SceneDelegate.swift */,
+				0BFBF1012A3719A5008BE188 /* Info.plist */,
 				0BFBF0F92A3719A5008BE188 /* Main.storyboard */,
 				0BFBF0FC2A3719A5008BE188 /* Assets.xcassets */,
 				0BFBF0FE2A3719A5008BE188 /* LaunchScreen.storyboard */,
-				0BFBF1012A3719A5008BE188 /* Info.plist */,
 				0BB3832F2A6E6EC50063E46B /* CinemaTrackerApp.xcdatamodeld */,
 			);
 			path = App;
@@ -797,6 +799,7 @@
 				0B8FB3F42A5C442C00B593A2 /* CHTCollectionViewWaterfallLayout */,
 				0BBBF1CF2A6ADB2100426159 /* YouTubeiOSPlayerHelper */,
 				0BCCC2032A6FDCD800D773B0 /* SPIndicator */,
+				0B2D1CFD2A710F190077009F /* GoogleMobileAds */,
 			);
 			productName = CinemaTracker;
 			productReference = 0BFBF0F02A3719A5008BE188 /* CinemaTracker.app */;
@@ -879,6 +882,7 @@
 				0B8FB3F32A5C442C00B593A2 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
 				0BBBF1CE2A6ADB2100426159 /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				0BCCC2022A6FDCD800D773B0 /* XCRemoteSwiftPackageReference "SPIndicator" */,
+				0B2D1CFC2A710F190077009F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 0BFBF0F12A3719A5008BE188 /* Products */;
 			projectDirPath = "";
@@ -1193,6 +1197,7 @@
 				DEVELOPMENT_TEAM = GA8F67WW6Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CinemaTracker/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1202,6 +1207,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunuscagliyan.CinemaTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1220,6 +1226,7 @@
 				DEVELOPMENT_TEAM = GA8F67WW6Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CinemaTracker/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1229,6 +1236,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yunuscagliyan.CinemaTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1355,6 +1363,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0B2D1CFC2A710F190077009F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		0B4772FD2A4835C60022F475 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1414,6 +1430,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0B2D1CFD2A710F190077009F /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B2D1CFC2A710F190077009F /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
 		0B4772FE2A4835C60022F475 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0B4772FD2A4835C60022F475 /* XCRemoteSwiftPackageReference "SnapKit" */;

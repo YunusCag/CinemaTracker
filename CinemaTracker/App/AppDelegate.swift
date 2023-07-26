@@ -8,6 +8,7 @@
 import UIKit
 import AlamofireNetworkActivityLogger
 import CoreData
+import GoogleMobileAds
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NetworkActivityLogger.shared.level = .info
         NetworkActivityLogger.shared.startLogging()
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }

@@ -38,4 +38,8 @@ struct Constant{
         static let SETTING_CHANGE_KEY = "setting_change_key"
     }
     
+    struct AdmobUtil {
+        static let bannerAdId = "ca-app-pub-3940256099942544/2934735716"
+    }
+    
 }
