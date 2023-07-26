@@ -34,7 +34,7 @@ final class GenreListViewController: UIViewController,UICollectionViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppTheme.shared.colors.background.withAlphaComponent(0.2)
+        view.backgroundColor = AppTheme.shared.colors.background
         createView()
     }
     

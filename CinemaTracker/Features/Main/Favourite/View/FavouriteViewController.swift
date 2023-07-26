@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import GoogleMobileAds
 
 final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -31,6 +32,16 @@ final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UIC
         return empty
     }()
     
+    private lazy var bannerView:GADBannerView = {
+        let banner = GADBannerView()
+        banner.frame = CGRect(x: (view.frame.width / 2 - 160), y: 0, width: 320, height: 50)
+        banner.adUnitID = Constant.AdmobUtil.bannerAdId
+        banner.load(GADRequest())
+        banner.backgroundColor = .clear
+        return banner
+    }()
+    
+    
     private var movieList:[MovieModel] = []
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,11 +50,18 @@ final class FavouriteViewController: CoreViewController<FavouriteViewModel>, UIC
     }
     
     override func setUpView() {
+        bannerView.rootViewController = self
+        
         view.addSubview(collectionView)
         view.addSubview(emptyView)
+        view.addSubview(bannerView)
         
-        collectionView.snp.makeConstraints { make in
+        bannerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+        }
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(bannerView.snp.bottom)
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()

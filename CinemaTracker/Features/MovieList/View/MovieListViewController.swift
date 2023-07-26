@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CHTCollectionViewWaterfallLayout
+import GoogleMobileAds
 
 final class MovieListViewControler: CoreViewController <MovieListViewModel>, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
     
@@ -41,12 +42,22 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
         return collectionView
     }()
     
+    private lazy var bannerView:GADBannerView = {
+        let banner = GADBannerView()
+        banner.frame = CGRect(x: (view.frame.width / 2 - 160), y: 0, width: 320, height: 50)
+        banner.adUnitID = Constant.AdmobUtil.bannerAdId
+        banner.load(GADRequest())
+        banner.backgroundColor = .clear
+        return banner
+    }()
     
     override func setUpView() {
         self.title = listTitle ?? Constant.StringParameter.EMPTY_STRING
         viewModel.listType = self.listType
         
         view.addSubview(collectionView)
+        view.addSubview(bannerView)
+        bannerView.rootViewController = self
         
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -54,6 +65,13 @@ final class MovieListViewControler: CoreViewController <MovieListViewModel>, UIC
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        bannerView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalTo(320)
+            make.height.equalTo(50)
+        }
+        view.bringSubviewToFront(bannerView)
         
         self.navigationController?.navigationBar.tintColor = AppTheme.shared.colors.secondary
         navigationItem.backButtonTitle = Constant.StringParameter.EMPTY_STRING

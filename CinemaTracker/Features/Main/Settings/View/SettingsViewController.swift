@@ -7,14 +7,33 @@
 
 import UIKit
 import SnapKit
+import GoogleMobileAds
 
 final class SettingsViewController: CoreViewController<SettingsViewModel> {
     
-    private lazy var labelLanguage:AppLabel = AppLabel()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        scroll.showsVerticalScrollIndicator = false
+        scroll.showsHorizontalScrollIndicator = false
+        return scroll
+    }()
+    
+    private lazy var bannerView:GADBannerView = {
+        let banner = GADBannerView()
+        banner.frame = CGRect(x: (view.frame.width / 2 - 160), y: 0, width: 320, height: 50)
+        banner.adUnitID = Constant.AdmobUtil.bannerAdId
+        banner.load(GADRequest())
+        banner.backgroundColor = .clear
+        return banner
+    }()
+    
+    
     private lazy var languageOptionList: SettingOptionList = {
-        let option = SettingOptionList()
+        let option = SettingOptionList(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 140))
         option.saveOptions(options: [LocalizableKeys.Common.languageEnglish.getLocalized(),LocalizableKeys.Common.languageTurkish.getLocalized()])
-        
+        option.saveTitle(title:LocalizableKeys.Settings.languageChoice.getLocalized())
         let language = self.viewModel.selectedLanguage
         switch(language) {
         case .english:
@@ -25,10 +44,10 @@ final class SettingsViewController: CoreViewController<SettingsViewModel> {
         return option
     }()
     
-    private lazy var labelRegion:AppLabel = AppLabel()
     private lazy var regionOptionList: SettingOptionList = {
-        let option = SettingOptionList()
+        let option = SettingOptionList(frame: CGRect(x: 0, y: languageOptionList.frame.maxY, width: view.frame.width, height: 140))
         option.saveOptions(options: [LocalizableKeys.Common.regionUSA.getLocalized(),LocalizableKeys.Common.regionTurkey.getLocalized()])
+        option.saveTitle(title:LocalizableKeys.Settings.regionChoice.getLocalized())
         let region = self.viewModel.selectedRegion
         switch(region){
         case .USA:
@@ -39,10 +58,10 @@ final class SettingsViewController: CoreViewController<SettingsViewModel> {
         return option
     }()
     
-    private lazy var labelTheme:AppLabel = AppLabel()
     private lazy var themeOptionList: SettingOptionList = {
-        let option = SettingOptionList()
+        let option = SettingOptionList(frame: CGRect(x: 0, y: regionOptionList.frame.maxY,width: view.frame.width, height: 140))
         option.saveOptions(options: [LocalizableKeys.Common.darkTheme.getLocalized(),LocalizableKeys.Common.lightTheme.getLocalized()])
+        option.saveTitle(title:LocalizableKeys.Settings.themeChoice.getLocalized())
         let region = self.viewModel.selectedTheme
         switch(region){
         case .Dark:
@@ -58,50 +77,31 @@ final class SettingsViewController: CoreViewController<SettingsViewModel> {
     
     
     override func setUpView() {
-        view.addSubview(labelLanguage)
-        view.addSubview(languageOptionList)
-        view.addSubview(labelRegion)
-        view.addSubview(regionOptionList)
-        view.addSubview(labelTheme)
-        view.addSubview(themeOptionList)
+        view.addSubview(scrollView)
+        view.addSubview(bannerView)
         
-        labelLanguage.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(12)
-            make.left.equalToSuperview().inset(16)
-        }
-        languageOptionList.snp.makeConstraints { make in
-            make.top.equalTo(labelLanguage.snp.bottom).offset(8)
-            make.left.equalToSuperview().inset(8)
-            make.right.equalToSuperview().inset(8)
-            make.height.equalTo(95)
+        bannerView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(320)
+            make.height.equalTo(50)
+            
         }
         
-        labelRegion.snp.makeConstraints { make in
-            make.top.equalTo(languageOptionList.snp.bottom).offset(12)
-            make.left.equalToSuperview().inset(16)
-        }
-        regionOptionList.snp.makeConstraints { make in
-            make.top.equalTo(labelRegion.snp.bottom).offset(8)
-            make.left.equalToSuperview().inset(8)
-            make.right.equalToSuperview().inset(8)
-            make.height.equalTo(95)
-        }
+        bannerView.rootViewController = self
         
-        labelTheme.snp.makeConstraints { make in
-            make.top.equalTo(regionOptionList.snp.bottom).offset(12)
-            make.left.equalToSuperview().inset(16)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.bottom.equalTo(bannerView.snp.top)
         }
+        scrollView.addSubview(languageOptionList)
+        scrollView.addSubview(regionOptionList)
+        scrollView.addSubview(themeOptionList)
         
-        themeOptionList.snp.makeConstraints { make in
-            make.top.equalTo(labelTheme.snp.bottom).offset(8)
-            make.left.equalToSuperview().inset(8)
-            make.right.equalToSuperview().inset(8)
-            make.height.equalTo(95)
-        }
-        
-        labelLanguage.text = LocalizableKeys.Settings.languageChoice.getLocalized()
-        labelRegion.text = LocalizableKeys.Settings.regionChoice.getLocalized()
-        labelTheme.text = LocalizableKeys.Settings.themeChoice.getLocalized()
+        let height = self.languageOptionList.frame.height + self.regionOptionList.frame.height + self.themeOptionList.frame.height + 80
+        scrollView.contentSize = CGSize(width: view.frame.width, height: height)
         
         languageOptionList.listener = { index in
             var languageType = LanguageType.english
@@ -148,9 +148,6 @@ final class SettingsViewController: CoreViewController<SettingsViewModel> {
     
     override func initTheme() {
         view.backgroundColor = AppTheme.shared.colors.background
-        labelLanguage.initStyle(typograph: .title,color: AppTheme.shared.colors.textPrimary)
-        labelRegion.initStyle(typograph: .title,color: AppTheme.shared.colors.textPrimary)
-        labelTheme.initStyle(typograph: .title,color: AppTheme.shared.colors.textPrimary)
     }
     
     override func bindObservable() {
