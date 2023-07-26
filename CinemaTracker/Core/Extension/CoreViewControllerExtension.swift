@@ -12,6 +12,7 @@ extension CoreViewController {
     var movieDetailListener: (MovieModel) -> Void {
         get {
             return { (movie: MovieModel) in
+                AdmobHelper.shared.increaseCounter()
                 let controller = MovieDetailViewController()
                 controller.movie = movie
                 self.navigationController?.pushViewController(controller, animated: true)

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import GoogleMobileAds
 
 final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> {
     
@@ -44,8 +45,17 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         return oveview
     }()
     
+    private lazy var bannerView:GADBannerView = {
+        let banner = GADBannerView(adSize: GADAdSize(size: CGSize(width: 320, height: 100), flags: 1))
+        banner.frame = CGRect(x: (view.frame.width / 2 - 160), y: detailOverview.frame.maxY + 10, width: 320, height: 100)
+        banner.adUnitID = Constant.AdmobUtil.bannerAdId
+        banner.load(GADRequest())
+        return banner
+    }()
+    
+    
     private lazy var castListView: CastListView = {
-        let list = CastListView(frame: CGRect(x: 0, y: detailOverview.frame.maxY + 12, width: view.frame.width, height: 225))
+        let list = CastListView(frame: CGRect(x: 0, y: bannerView.frame.maxY + 12, width: view.frame.width, height: 225))
         return list
     }()
     
@@ -61,13 +71,22 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
     
     
     var movie:MovieModel? = nil
+    private var interstitial: GADInterstitialAd?
+    
     
     override func setUpView() {
+        if AdmobHelper.shared.checkShowInterstital() {
+            interstitalRequest()
+        }
+        
         self.viewModel.movie = self.movie
         self.title = self.movie?.title ?? Constant.StringParameter.EMPTY_STRING
         
         view.addSubview(scrollView)
         view.addSubview(activityIndicator)
+        
+        bannerView.rootViewController = self
+        
         
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -84,9 +103,10 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
         self.scrollView.addSubview(largeImage)
         self.scrollView.addSubview(detailTopView)
         self.scrollView.addSubview(detailOverview)
+        self.scrollView.addSubview(bannerView)
         
         
-        let height = self.largeImage.frame.height + self.detailTopView.frame.height + self.detailOverview.frame.height + 80
+        let height = self.largeImage.frame.height + self.detailTopView.frame.height + self.detailOverview.frame.height + self.bannerView.frame.height + 80
         self.scrollView.contentSize = CGSize(width: view.frame.width, height: height)
         
         
@@ -189,5 +209,22 @@ final class MovieDetailViewController: CoreViewController<MovieDetailViewModel> 
             self.detailOverview.save(overview: overview)
         }
         
+    }
+    
+    fileprivate func interstitalRequest() {
+        let request = GADRequest()
+        GADInterstitialAd.load(
+            withAdUnitID: Constant.AdmobUtil.instertialAdId,
+            request: request,
+            completionHandler: { [self] ad, error in
+                if let error = error {
+                    print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                    return
+                }
+                interstitial = ad
+                self.interstitial?.present(fromRootViewController: self)
+                interstitial = nil
+            }
+        )
     }
 }

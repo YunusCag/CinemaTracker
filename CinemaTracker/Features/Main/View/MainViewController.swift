@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import GoogleMobileAds
 
 final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
@@ -16,14 +17,19 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     
     private lazy var viewModel: MainViewModel = MainViewModel()
     
+    private var interstitial: GADInterstitialAd?
+    
     deinit {
         NetworkMonitor.shared.stopMonitoring()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         viewModel.onInit()
         NetworkMonitor.shared.startMonitoring()
+        interstitalRequest()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +40,27 @@ final class MainViewController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
+        AdmobHelper.shared.increaseCounter()
+        if AdmobHelper.shared.checkShowInterstital() && self.interstitial != nil{
+            self.interstitial?.present(fromRootViewController: self)
+            self.interstitial = nil
+            interstitalRequest()
+        }
+    }
+    
+    fileprivate func interstitalRequest() {
+        let request = GADRequest()
+        GADInterstitialAd.load(
+            withAdUnitID: Constant.AdmobUtil.instertialAdId,
+            request: request,
+            completionHandler: { [self] ad, error in
+                if let error = error {
+                    print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                    return
+                }
+                interstitial = ad
+            }
+        )
     }
     
     

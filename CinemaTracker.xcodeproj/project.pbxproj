@@ -17,6 +17,7 @@
 		0B0D30452A5EFAA900A52315 /* GenreListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0D30442A5EFAA900A52315 /* GenreListViewController.swift */; };
 		0B2D1CFA2A71040D0077009F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D1CF92A71040D0077009F /* EmptyView.swift */; };
 		0B2D1CFE2A710F190077009F /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 0B2D1CFD2A710F190077009F /* GoogleMobileAds */; };
+		0B2D1D002A7130260077009F /* AdmobHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2D1CFF2A7130260077009F /* AdmobHelper.swift */; };
 		0B4772FA2A48255D0022F475 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4772F92A48255D0022F475 /* AppLabel.swift */; };
 		0B4772FC2A4826670022F475 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4772FB2A4826670022F475 /* Typography.swift */; };
 		0B4772FF2A4835C60022F475 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4772FE2A4835C60022F475 /* SnapKit */; };
@@ -130,6 +131,7 @@
 		0B02B9812A697937008CFC48 /* CrewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewListView.swift; sourceTree = "<group>"; };
 		0B0D30442A5EFAA900A52315 /* GenreListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreListViewController.swift; sourceTree = "<group>"; };
 		0B2D1CF92A71040D0077009F /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		0B2D1CFF2A7130260077009F /* AdmobHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmobHelper.swift; sourceTree = "<group>"; };
 		0B4772F92A48255D0022F475 /* AppLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLabel.swift; sourceTree = "<group>"; };
 		0B4772FB2A4826670022F475 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		0B47730D2A4837EF0022F475 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				0B9DA7B92A601C72000F52D6 /* RegionManager.swift */,
 				0B8A26322A643C9000E7ED5B /* LanguageTypeManager.swift */,
 				0BCCC1FD2A6FD39000D773B0 /* NetworkMonitor.swift */,
+				0B2D1CFF2A7130260077009F /* AdmobHelper.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -943,6 +946,7 @@
 				0B9DA7BA2A601C72000F52D6 /* RegionManager.swift in Sources */,
 				0BFA06642A52D19A0082109F /* ObservableList.swift in Sources */,
 				0B02B9782A692B1C008CFC48 /* CrewModel.swift in Sources */,
+				0B2D1D002A7130260077009F /* AdmobHelper.swift in Sources */,
 				0BD909D12A519BFD00760F07 /* NetworkError.swift in Sources */,
 				0B8FB3F82A5C4E4200B593A2 /* PaginationLoadingCell.swift in Sources */,
 				0B02B9822A697937008CFC48 /* CrewListView.swift in Sources */,
